@@ -1,0 +1,31 @@
+/* Bayi Rota sayfasına özgü kurallar (tasarım: Project.dc.html · <helmet><style>). */
+.dpin {
+  animation: pop 0.32s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+  transition: transform 0.15s ease;
+}
+.dpin:hover {
+  transform: scale(1.25);
+}
+@keyframes pop {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.rdraw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: rd 0.9s cubic-bezier(0.5, 0, 0.2, 1) forwards;
+}
+@keyframes rd {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.tab {
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
