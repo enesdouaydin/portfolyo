@@ -1,0 +1,12 @@
+{
+  "name": "portfolyo-tools",
+  "private": true,
+  "type": "module",
+  "description": "Ekran görüntüsü alma ve tasarımla karşılaştırma araçları (Playwright imajı içinde çalışır).",
+  "dependencies": {
+    "jpeg-js": "0.4.4",
+    "pixelmatch": "^8.0.0",
+    "playwright": "1.63.0",
+    "pngjs": "^7.0.0"
+  }
+}
