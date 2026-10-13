@@ -1,0 +1,142 @@
+/* Ana sayfaya özgü kurallar (tasarım: Main.dc.html · <helmet><style>). */
+.row {
+  transition: background 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.row:hover {
+  background: #141416;
+}
+.row .rt {
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.row:hover .rt {
+  transform: translateX(10px);
+}
+.row .ra {
+  transition:
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+.row:hover .ra {
+  transform: rotate(-45deg);
+  background: #edebe6;
+  color: #0a0a0a;
+  border-color: #edebe6;
+}
+.feat .fa {
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.feat:hover .fa {
+  transform: translateX(8px);
+}
+.feat {
+  transition: border-color 0.3s ease;
+}
+.feat:hover {
+  border-color: #3a3a40;
+}
+.chip {
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+.chip:hover {
+  border-color: #6a6862;
+}
+.mail {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.mail:hover {
+  background-size: 0 2px;
+}
+.on .flow {
+  animation: flow 2.4s linear infinite;
+}
+@keyframes flow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+.on .pulse {
+  animation: pulse 2.8s ease-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+.on .draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 5s cubic-bezier(0.6, 0, 0.2, 1) infinite;
+}
+@keyframes draw {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  55% {
+    stroke-dashoffset: 0;
+  }
+  85% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+.rise {
+  animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.d1 {
+  animation-delay: 0.08s;
+}
+.d2 {
+  animation-delay: 0.16s;
+}
+.d3 {
+  animation-delay: 0.28s;
+}
+@media (max-width: 760px) {
+  .scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.92) 0%,
+      rgba(10, 10, 10, 0.5) 45%,
+      rgba(10, 10, 10, 0) 70%
+    ) !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .on .flow,
+  .on .pulse,
+  .on .draw,
+  .rise {
+    animation: none;
+  }
+}
