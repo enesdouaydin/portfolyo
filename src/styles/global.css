@@ -1,0 +1,23 @@
+/* Tüm sayfalarda ortak: tasarımdaki her <helmet><style> bloğunun başındaki kurallar. */
+body {
+  margin: 0;
+  background: #0a0a0a;
+}
+a {
+  color: #edebe6;
+}
+a:hover {
+  color: #ffffff;
+}
+::selection {
+  background: #ffd60a;
+  color: #0a0a0a;
+}
+.nl {
+  color: #a8a59d;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.nl:hover {
+  color: #ffd60a;
+}

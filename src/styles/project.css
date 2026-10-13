@@ -1,0 +1,13 @@
+/* Proje sayfalarında ortak: "Sıradaki proje" bandının hover davranışı. */
+.next .na {
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.next:hover .na {
+  transform: translateX(14px);
+}
+.next .nt {
+  transition: color 0.3s ease;
+}
+.next:hover .nt {
+  color: #ffd60a;
+}
