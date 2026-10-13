@@ -1,0 +1,12 @@
+node_modules
+dist
+.tools/out
+.tools/node_modules
+*.log
+.tools/banned-names.txt
+# tasarımdan tek seferlik dönüştürme betikleri (tasarım klasörü repoda yok)
+.tools/dc2tsx.mjs
+.tools/split-sections.mjs
+.tools/assemble-home.mjs
+.tools/extract-*.mjs
+.tools/convert-all.sh
