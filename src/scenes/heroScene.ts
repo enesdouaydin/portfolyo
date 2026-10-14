@@ -8,7 +8,7 @@ export const heroStageOptions: StageOptions = {
   fov: 30,
   near: 0.1,
   far: 60,
-  loop: 18,
+  loop: 21, // çift başına ~1 sn (21 çift)
   progressAt: (cyc) => (cyc < 0.9 ? cyc / 0.9 : 1 - (cyc - 0.9) / 0.1),
   smooth: () => 0.075,
 };

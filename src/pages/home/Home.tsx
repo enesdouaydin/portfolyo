@@ -34,7 +34,7 @@ export default function Home() {
         id="top"
         scene={createHeroScene}
         options={heroStageOptions}
-        scrollHeight="3000px"
+        scrollHeight="3500px"
         label={HERO_LABEL}
       >
         {({ stage, noScroll }) => <HeroOverlay stage={stage} noScroll={noScroll} />}
