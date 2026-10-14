@@ -144,8 +144,8 @@ export function MediaPanel() {
             >
               <video
                 ref={videoRef}
-                src="/media/rota_demo.mp4"
-                poster="/media/rota_poster.jpg"
+                src={`${import.meta.env.BASE_URL}media/rota_demo.mp4`}
+                poster={`${import.meta.env.BASE_URL}media/rota_poster.jpg`}
                 controls
                 playsInline
                 muted

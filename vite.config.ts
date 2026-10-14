@@ -5,7 +5,12 @@ import react from '@vitejs/plugin-react';
 // compose içinde CHOKIDAR_USEPOLLING=true verilir; yerelde normal izleme kullanılır.
 const polling = process.env.CHOKIDAR_USEPOLLING === 'true';
 
+// GitHub Pages proje sitesi alt yoldan sunulur (kullanici.github.io/portfolyo/): derlemede VITE_BASE=/portfolyo/ verilir.
+// Verilmezse (geliştirme, Docker/nginx) site kökten çalışır.
+const base = process.env.VITE_BASE || '/';
+
 export default defineConfig({
+  base,
   plugins: [react()],
   server: {
     host: true,

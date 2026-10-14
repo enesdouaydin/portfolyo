@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { ScrollManager } from './components/ScrollManager';
 import { ROUTES } from './routes';
 
@@ -22,6 +22,8 @@ export default function App() {
           <Route path={ROUTES.belgeDoldurma} element={<BelgeDoldurma />} />
           <Route path={ROUTES.kdvIade} element={<KdvIade />} />
           <Route path={ROUTES.evFiyat} element={<EvFiyat />} />
+          {/* Tanımsız adres (GitHub Pages'te 404.html de buraya düşer): ana sayfaya yönlendir. */}
+          <Route path="*" element={<Navigate to={ROUTES.home} replace />} />
         </Routes>
       </Suspense>
     </>
