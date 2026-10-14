@@ -2,13 +2,13 @@ export const EXPERIENCE = [
   {
     period: '2025 — bugün',
     title: 'Software Developer',
-    org: 'Holding · Ankara',
+    org: 'ABH',
     text: 'Bayi rota optimizasyonu (VRP) ve perakende merchandising platformu. Backend, frontend, UI/UX ve DevOps uçtan uca.',
   },
   {
     period: '2024 — 2025',
     title: 'AI Engineer & Data Science',
-    org: '',
+    org: 'Twinup',
     text: 'RAG tabanlı sesli müşteri asistanı, VLM + LLM ile belge doldurma otomasyonu, multi-agent mimariler ve Go mikroservisleri.',
   },
   {
