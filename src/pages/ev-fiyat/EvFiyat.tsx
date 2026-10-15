@@ -14,8 +14,8 @@ import { GUTTER, MONO } from '../../styles/type';
 
 /** Her evin kartı: sahne o eve ulaşınca karar (metin, renk, çerçeve) belirir. */
 const VERDICTS = [
-  ['%12 pahalı', '#C9C6BE', '#3A3A40'],
-  ['Piyasa değerinde', '#C9C6BE', '#3A3A40'],
+  ['%12 pahalı', '#d9cfbf', '#43392f'],
+  ['Piyasa değerinde', '#d9cfbf', '#43392f'],
   ['%12 uygun · bulundu', '#F0B54A', '#F0B54A'],
 ] as const;
 
@@ -32,14 +32,14 @@ function HeroBottom({ stage, noScroll }: { stage: number; noScroll: boolean }) {
     return {
       n: 'EV 0' + (i + 1),
       v: on ? VERDICTS[i][0] : 'inceleniyor…',
-      c: on ? VERDICTS[i][1] : '#6A6862',
-      bd: on ? VERDICTS[i][2] : '#2A2A2E',
+      c: on ? VERDICTS[i][1] : '#6f6457',
+      bd: on ? VERDICTS[i][2] : '#2b241e',
     };
   });
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-        <span style={{ fontFamily: MONO, fontSize: '12px', color: '#8A877F', letterSpacing: '.04em' }}>
+        <span style={{ fontFamily: MONO, fontSize: '12px', color: '#8a7e6e', letterSpacing: '.04em' }}>
           {PHASES[stage] || PHASES[0]}
         </span>
         <ol
@@ -66,7 +66,7 @@ function HeroBottom({ stage, noScroll }: { stage: number; noScroll: boolean }) {
                 gap: '6px',
               }}
             >
-              <span style={{ fontFamily: MONO, fontSize: '11px', color: '#8A877F' }}>{h.n}</span>
+              <span style={{ fontFamily: MONO, fontSize: '11px', color: '#8a7e6e' }}>{h.n}</span>
               <span style={{ fontSize: '18px', letterSpacing: '-0.02em', color: h.c }}>{h.v}</span>
             </li>
           ))}

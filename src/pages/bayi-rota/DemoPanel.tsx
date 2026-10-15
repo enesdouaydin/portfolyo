@@ -12,7 +12,7 @@ interface Props {
 
 const pct = (p: DemoPoint) => ({ x: ((p.x / 160) * 100).toFixed(2) + '%', y: p.y.toFixed(2) + '%' });
 const pinLabel = (p: DemoPoint) => `Bayi ${p.id}, ${DAY_NAMES[p.day]}, ${p.seq}. durak`;
-const smallLabel = { fontFamily: MONO, fontSize: '11px', color: '#8A8A8A' } as const;
+const smallLabel = { fontFamily: MONO, fontSize: '11px', color: '#8a7e6e' } as const;
 
 /** Haritanın sabit zemini: nehir, ana yollar, semt adları. */
 function MapBackdrop() {
@@ -123,7 +123,7 @@ export function DemoPanel({ day, sel, onPickDay, onPickPin }: Props) {
           minWidth: '0',
           position: 'relative',
           aspectRatio: '16/10',
-          background: '#121212',
+          background: '#15110e',
           overflow: 'hidden',
         }}
       >
@@ -168,7 +168,7 @@ export function DemoPanel({ day, sel, onPickDay, onPickPin }: Props) {
                     height: '12px',
                     margin: '-6px 0 0 -6px',
                     borderRadius: '99px',
-                    border: '2px solid #121212',
+                    border: '2px solid #15110e',
                     background: DAY_COLORS[p.day],
                     padding: '0',
                     cursor: 'pointer',
@@ -191,7 +191,7 @@ export function DemoPanel({ day, sel, onPickDay, onPickPin }: Props) {
             margin: '-8px 0 0 -8px',
             borderRadius: '3px',
             background: '#F0B54A',
-            boxShadow: '0 0 0 3px #121212,0 0 0 5px #F0B54A',
+            boxShadow: '0 0 0 3px #15110e,0 0 0 5px #F0B54A',
           }}
         />
         <span style={{ position: 'absolute', left: '12px', bottom: '10px', ...smallLabel }}>
@@ -206,7 +206,7 @@ export function DemoPanel({ day, sel, onPickDay, onPickPin }: Props) {
           display: 'flex',
           flexDirection: 'column',
           gap: '16px',
-          borderLeft: '1px solid #1F1F1F',
+          borderLeft: '1px solid #2b241e',
           boxSizing: 'border-box',
         }}
       >
@@ -238,7 +238,7 @@ export function DemoPanel({ day, sel, onPickDay, onPickPin }: Props) {
                   borderRadius: '10px',
                   border: `1px solid ${on ? '#F0B54A' : '#2E2E2E'}`,
                   background: on ? '#F0B54A' : 'transparent',
-                  color: on ? '#0C0A09' : '#D4D4D4',
+                  color: on ? '#0C0A09' : '#d9cfbf',
                   fontFamily: "'Geist Variable','Geist',sans-serif",
                   fontWeight: '600',
                   fontSize: '13px',
@@ -275,8 +275,8 @@ export function DemoPanel({ day, sel, onPickDay, onPickPin }: Props) {
                     gap: '12px',
                     padding: '0 14px',
                     borderRadius: '12px',
-                    border: `1px solid ${on ? DAY_COLORS[i] : '#232323'}`,
-                    background: on ? '#1C1C1C' : 'transparent',
+                    border: `1px solid ${on ? DAY_COLORS[i] : '#2b241e'}`,
+                    background: on ? '#1d1814' : 'transparent',
                     color: '#F2F0EA',
                     fontFamily: "'Geist Variable','Geist',sans-serif",
                     fontSize: '14px',
@@ -295,7 +295,7 @@ export function DemoPanel({ day, sel, onPickDay, onPickPin }: Props) {
                     }}
                   />
                   <span style={{ flex: '1' }}>{DAY_NAMES[i]}</span>
-                  <span style={{ fontFamily: MONO, fontSize: '12px', color: '#A3A3A3' }}>
+                  <span style={{ fontFamily: MONO, fontSize: '12px', color: '#ab9f8e' }}>
                     {o.length} durak
                   </span>
                 </button>
@@ -312,7 +312,7 @@ export function DemoPanel({ day, sel, onPickDay, onPickPin }: Props) {
             display: 'flex',
             flexDirection: 'column',
             gap: '6px',
-            background: '#141414',
+            background: '#15110e',
             minHeight: '112px',
             boxSizing: 'border-box',
           }}
@@ -321,7 +321,7 @@ export function DemoPanel({ day, sel, onPickDay, onPickPin }: Props) {
           <span style={{ fontSize: '22px', letterSpacing: '-0.02em', fontWeight: '500', color: info.c }}>
             {info.title}
           </span>
-          <span style={{ fontSize: '14px', lineHeight: '1.5', color: '#A3A3A3' }}>{info.text}</span>
+          <span style={{ fontSize: '14px', lineHeight: '1.5', color: '#ab9f8e' }}>{info.text}</span>
         </div>
       </div>
     </div>
@@ -344,7 +344,7 @@ function DayLayer({ d, sel, onPickPin }: { d: number; sel: number; onPickPin: (i
             key={r.color}
             points={r.points}
             fill="none"
-            stroke="#3A3A3A"
+            stroke="#43392f"
             strokeWidth=".35"
             strokeLinejoin="round"
             opacity=".55"
@@ -379,8 +379,8 @@ function DayLayer({ d, sel, onPickPin }: { d: number; sel: number; onPickPin: (i
               height: own ? '22px' : '8px',
               margin: own ? '-11px 0 0 -11px' : '-4px 0 0 -4px',
               borderRadius: '99px',
-              border: `2px solid ${k === sel ? '#FFFFFF' : '#121212'}`,
-              background: own ? DAY_COLORS[d] : '#3A3A3A',
+              border: `2px solid ${k === sel ? '#FFFFFF' : '#15110e'}`,
+              background: own ? DAY_COLORS[d] : '#43392f',
               color: '#0C0A09',
               padding: '0',
               cursor: 'pointer',

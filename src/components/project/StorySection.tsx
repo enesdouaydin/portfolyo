@@ -1,47 +1,23 @@
-import { GUTTER, MONO, fluid } from '../../styles/type';
+import { stagger } from '../stagger';
 
-/** "01 / Problem · 02 / Yaklaşım · 03 / Sonuç" sütunları. */
+/** "01 / Problem · 02 / Yaklaşım · 03 / Sonuç": çizgili büyük numaralı üç kart. */
 export function StorySection({ items }: { items: ReadonlyArray<{ label: string; text: string }> }) {
   return (
-    <section
-      aria-label="Hikâye"
-      style={{
-        maxWidth: '1360px',
-        margin: '0 auto',
-        padding: `56px ${GUTTER} ${fluid(128)}`,
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit,minmax(min(320px,100%),1fr))',
-        gap: '48px 40px',
-      }}
-    >
-      {items.map((it) => (
-        <div
-          key={it.label}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-            borderTop: '1px solid #2A2A2E',
-            paddingTop: '24px',
-          }}
-        >
-          <span style={{ fontFamily: MONO, fontSize: '12px', color: '#F0B54A', letterSpacing: '.06em' }}>
-            {it.label}
-          </span>
-          <p
-            style={{
-              margin: '0',
-              fontSize: '20px',
-              lineHeight: '1.5',
-              letterSpacing: '-0.01em',
-              color: '#D6D3CB',
-              textWrap: 'pretty',
-            }}
-          >
-            {it.text}
-          </p>
-        </div>
-      ))}
+    <section aria-label="Hikâye" className="wrap story">
+      {items.map((it, i) => {
+        const [num, name] = it.label.includes(' / ')
+          ? it.label.split(' / ')
+          : [String(i + 1).padStart(2, '0'), it.label];
+        return (
+          <article key={it.label} className="story-item reveal" style={stagger(i, 0.1)}>
+            <span className="story-num" aria-hidden="true">
+              {num}
+            </span>
+            <h2 className="display story-title">{name}</h2>
+            <p>{it.text}</p>
+          </article>
+        );
+      })}
     </section>
   );
 }

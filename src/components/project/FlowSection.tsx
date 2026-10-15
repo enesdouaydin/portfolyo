@@ -1,147 +1,80 @@
+import type { PointerEvent } from 'react';
 import type { FlowContent } from '../../data/projectPages';
-import { ACCENT } from '../../theme';
-import { GUTTER, MONO, SERIF, fluid, h2Style, serifItalic } from '../../styles/type';
-import { Eyebrow } from '../Eyebrow';
+import { SectionHead } from '../SectionHead';
+import { stagger } from '../stagger';
 
-const chip = {
-  border: '1px solid #2F2F34',
-  color: '#C9C6BE',
-  borderRadius: '14px',
-  padding: '5px 10px',
-  fontFamily: MONO,
-  fontSize: '11px',
-  lineHeight: '1.5',
-} as const;
+/** Fare hangi kartın üstündeyse ışığı ve eğimi oraya taşır (site.css: .card::after, --mx/--my/--rx/--ry). */
+export function moveSpotlight(e: PointerEvent<HTMLElement>) {
+  const card = (e.target as Element).closest<HTMLElement>('.card');
+  if (!card) return;
+  const r = card.getBoundingClientRect();
+  card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+  card.style.setProperty('--my', `${e.clientY - r.top}px`);
+  const nx = (e.clientX - r.left) / r.width - 0.5;
+  const ny = (e.clientY - r.top) / r.height - 0.5;
+  card.style.setProperty('--ry', `${(nx * 5).toFixed(2)}deg`);
+  card.style.setProperty('--rx', `${(-ny * 5).toFixed(2)}deg`);
+}
 
-/** "Nasıl çalışıyor" bölümü: başlık + numaralı adım kartları (koşul → hedef hapları) + üç not sütunu. */
+/** "Nasıl çalışıyor" bölümü: başlık + numaralı adım kartları (koşul → hedef hapları) + üç not. */
 export function FlowSection({ data }: { data: FlowContent }) {
+  const [num = '02', name = data.eyebrow] = data.eyebrow.split(' / ');
+  const id = `akis-${num}`;
   return (
-    <section
-      aria-label={data.eyebrow.replace(/^\d+ \/ /, '')}
-      style={{
-        maxWidth: '1360px',
-        margin: '0 auto',
-        padding: `0 ${GUTTER} ${fluid(128)}`,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '56px',
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-end',
-          gap: '24px 64px',
-          flexWrap: 'wrap',
-        }}
-      >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-          <Eyebrow>{data.eyebrow}</Eyebrow>
-          <h2 style={h2Style}>
-            {data.title.lead} <span style={serifItalic}>{data.title.italic}</span>
-          </h2>
-        </div>
-        <p style={{ margin: '0', maxWidth: '440px', fontSize: '17px', lineHeight: '1.55', color: '#A8A59D' }}>
-          {data.lead}
-        </p>
-      </div>
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <span style={{ fontFamily: MONO, fontSize: '12px', color: '#8A877F', letterSpacing: '.06em' }}>
-          {data.caption}
+    <section className="section flow" aria-labelledby={id}>
+      <div className="wrap">
+        <SectionHead
+          id={id}
+          num={num}
+          title={
+            <>
+              {data.title.lead} <span className="hl">{data.title.italic}</span>
+            </>
+          }
+          lead={data.lead}
+        />
+        <span className="mono flow-caption">
+          {name} · {data.caption}
         </span>
-        <ol
-          style={{
-            listStyle: 'none',
-            margin: '0',
-            padding: '0',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit,minmax(min(280px,100%),1fr))',
-            gap: '16px',
-          }}
-        >
-          {data.steps.map((a) => (
-            <li
-              key={a.n}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px',
-                background: '#111113',
-                border: '1px solid #232327',
-                borderRadius: '20px',
-                padding: '28px',
-              }}
-            >
-              <span style={{ fontFamily: MONO, fontSize: '12px', color: ACCENT, letterSpacing: '.06em' }}>
-                {a.n}
-              </span>
-              <span style={{ fontWeight: '500', fontSize: '22px', letterSpacing: '-0.03em' }}>{a.role}</span>
-              <p style={{ margin: '0', fontSize: '15px', lineHeight: '1.55', color: '#A8A59D' }}>{a.does}</p>
-              {a.says && (
-                <p
-                  style={{
-                    margin: '0',
-                    fontFamily: SERIF,
-                    fontStyle: 'italic',
-                    fontSize: '20px',
-                    lineHeight: '1.3',
-                    color: '#F2EBDF',
-                  }}
-                >
-                  “{a.says}”
-                </p>
-              )}
-              {a.exits.length > 0 && (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: 'auto' }}>
-                  {a.exits.map((e) => (
-                    <span key={e.when} style={chip}>
-                      {e.when} <span style={{ color: ACCENT }}>→</span> {e.to}
-                    </span>
-                  ))}
-                </div>
-              )}
+        <ol className="flow-steps" onPointerMove={moveSpotlight}>
+          {data.steps.map((a, i) => (
+            <li key={a.n} className="reveal" style={stagger(i, 0.06)}>
+              <div className="card flow-step">
+                <span className="card-top mono">
+                  <span className="hl">{a.n}</span>
+                </span>
+                <h3 className="display flow-role">{a.role}</h3>
+                <p className="card-line">{a.does}</p>
+                {a.says && <p className="flow-says">“{a.says}”</p>}
+                {a.exits.length > 0 && (
+                  <span className="badges flow-exits">
+                    {a.exits.map((e) => (
+                      <span key={e.when} className="badge">
+                        {e.when} <span className="hl">→</span> {e.to}
+                      </span>
+                    ))}
+                  </span>
+                )}
+              </div>
             </li>
           ))}
         </ol>
-      </div>
-
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit,minmax(min(320px,100%),1fr))',
-          gap: '48px 40px',
-        }}
-      >
-        {data.notes.map((n) => (
-          <div
-            key={n.label}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '16px',
-              borderTop: '1px solid #2A2A2E',
-              paddingTop: '24px',
-            }}
-          >
-            <span style={{ fontFamily: MONO, fontSize: '12px', color: ACCENT, letterSpacing: '.06em' }}>
-              {n.label}
-            </span>
-            <p
-              style={{
-                margin: '0',
-                fontSize: '18px',
-                lineHeight: '1.5',
-                letterSpacing: '-0.01em',
-                color: '#D6D3CB',
-                textWrap: 'pretty',
-              }}
-            >
-              {n.text}
-            </p>
-          </div>
-        ))}
+        <div className="story flow-notes">
+          {data.notes.map((n, i) => {
+            const [nn, label] = n.label.includes(' / ')
+              ? n.label.split(' / ')
+              : [String(i + 1).padStart(2, '0'), n.label];
+            return (
+              <article key={n.label} className="story-item reveal" style={stagger(i, 0.1)}>
+                <span className="story-num" aria-hidden="true">
+                  {nn}
+                </span>
+                <h3 className="display story-title">{label}</h3>
+                <p>{n.text}</p>
+              </article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

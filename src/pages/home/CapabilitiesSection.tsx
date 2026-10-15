@@ -1,6 +1,6 @@
 import { CAPABILITY_GROUPS } from '../../data/profile';
-import { SectionHead } from './SectionHead';
-import { stagger } from './reveal';
+import { SectionHead } from '../../components/SectionHead';
+import { stagger } from '../../components/stagger';
 
 /** Yetkinlikler: iki grup, her alan bir satır; araçlar düz metin olarak okunur. */
 export function CapabilitiesSection() {

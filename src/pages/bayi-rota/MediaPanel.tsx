@@ -55,8 +55,8 @@ export function MediaPanel() {
     >
       <div
         style={{
-          background: '#111113',
-          border: '1px solid #232327',
+          background: '#15110e',
+          border: '1px solid #2b241e',
           borderRadius: '24px',
           overflow: 'hidden',
         }}
@@ -69,10 +69,10 @@ export function MediaPanel() {
             gap: '16px',
             flexWrap: 'wrap',
             padding: '14px 14px 14px 24px',
-            borderBottom: '1px solid #1F1F1F',
+            borderBottom: '1px solid #2b241e',
           }}
         >
-          <span style={{ fontFamily: MONO, fontSize: '12px', color: '#A8A59D' }}>{labels[tab]}</span>
+          <span style={{ fontFamily: MONO, fontSize: '12px', color: '#ab9f8e' }}>{labels[tab]}</span>
           <div
             role="tablist"
             aria-label="Görünüm"
@@ -81,7 +81,7 @@ export function MediaPanel() {
               gap: '4px',
               padding: '4px',
               background: '#0C0A09',
-              border: '1px solid #232327',
+              border: '1px solid #2b241e',
               borderRadius: '999px',
               flexWrap: 'wrap',
             }}
@@ -102,7 +102,7 @@ export function MediaPanel() {
                     borderRadius: '999px',
                     border: 'none',
                     background: on ? '#F0B54A' : 'transparent',
-                    color: on ? '#0C0A09' : '#A8A59D',
+                    color: on ? '#0C0A09' : '#ab9f8e',
                     fontFamily: "'Geist Variable','Geist',sans-serif",
                     fontWeight: '500',
                     fontSize: '14px',
@@ -139,7 +139,7 @@ export function MediaPanel() {
                 minWidth: '0',
                 display: 'flex',
                 flexDirection: 'column',
-                background: '#0E0E10',
+                background: '#100d0b',
               }}
             >
               <video
@@ -152,7 +152,7 @@ export function MediaPanel() {
                 preload="metadata"
                 onTimeUpdate={onTime}
                 aria-label="Bayi rota optimizasyonu uygulamasının ekran kaydı"
-                style={{ display: 'block', width: '100%', aspectRatio: '1440/742', background: '#0E0E10' }}
+                style={{ display: 'block', width: '100%', aspectRatio: '1440/742', background: '#100d0b' }}
               />
               <div
                 style={{
@@ -161,10 +161,10 @@ export function MediaPanel() {
                   justifyContent: 'space-between',
                   gap: '14px',
                   padding: '14px 20px',
-                  borderTop: '1px solid #1F1F1F',
+                  borderTop: '1px solid #2b241e',
                   fontFamily: MONO,
                   fontSize: '12px',
-                  color: '#A8A59D',
+                  color: '#ab9f8e',
                   flexWrap: 'wrap',
                 }}
               >
@@ -184,7 +184,7 @@ export function MediaPanel() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '4px',
-                borderLeft: '1px solid #1F1F1F',
+                borderLeft: '1px solid #2b241e',
               }}
             >
               {VIDEO_CHAPTERS.map((c, i) => {
@@ -200,8 +200,8 @@ export function MediaPanel() {
                         textAlign: 'left',
                         borderRadius: '12px',
                         border: 'none',
-                        background: on ? '#1C1C1F' : 'transparent',
-                        color: on ? '#F2EBDF' : '#A8A59D',
+                        background: on ? '#1d1814' : 'transparent',
+                        color: on ? '#F2EBDF' : '#ab9f8e',
                         fontFamily: "'Geist Variable','Geist',sans-serif",
                         fontSize: '15px',
                         fontWeight: '500',
@@ -213,7 +213,7 @@ export function MediaPanel() {
                       }}
                     >
                       <span
-                        style={{ fontFamily: MONO, fontSize: '11px', color: '#8A877F', flex: '0 0 44px' }}
+                        style={{ fontFamily: MONO, fontSize: '11px', color: '#8a7e6e', flex: '0 0 44px' }}
                       >
                         {c.t}
                       </span>
@@ -241,8 +241,8 @@ export function MediaPanel() {
                 key={s.n}
                 style={{
                   padding: '32px',
-                  borderRight: '1px solid #1F1F1F',
-                  borderBottom: '1px solid #1F1F1F',
+                  borderRight: '1px solid #2b241e',
+                  borderBottom: '1px solid #2b241e',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '14px',
@@ -261,7 +261,7 @@ export function MediaPanel() {
                 >
                   {s.title}
                 </span>
-                <span style={{ fontSize: '15px', lineHeight: '1.6', color: '#A8A59D' }}>{s.text}</span>
+                <span style={{ fontSize: '15px', lineHeight: '1.6', color: '#ab9f8e' }}>{s.text}</span>
               </li>
             ))}
           </ol>

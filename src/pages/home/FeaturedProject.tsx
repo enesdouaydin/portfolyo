@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { DEMO_ROUTES, DEPOT } from '../../data/routeDemo';
 import { ROUTES } from '../../routes';
 import { ArrowRight } from './ProjectCard';
-import { ScrambleText } from './ScrambleText';
+import { ScrambleText } from '../../components/ScrambleText';
 
 const STACK = ['Python · FastAPI', 'PostgreSQL', 'RabbitMQ · Redis', 'k-means · 2-opt'];
 const DISTRICTS: ReadonlyArray<[string, number, number]> = [

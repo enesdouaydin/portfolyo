@@ -1,9 +1,10 @@
 /*
- * Ana sayfa. Bölümler aynı iskeleti paylaşır: .section > .wrap > .sec-head (numara, başlık, açıklama) + içerik.
+ * Sitenin ortak görünümü (ana sayfa ve proje sayfaları). Bölümler aynı iskeleti paylaşır: .section > .wrap > .sec-head (numara, başlık, açıklama) + içerik.
  * Renk ve yazı değişkenleri: src/styles/global.css.
  */
 
-.home {
+.page {
+  overflow-x: clip; /* eğik şeritler ve kılıç kesikleri sayfayı yana taşırmasın (sticky'yi bozmaz) */
   font-family: var(--font-sans);
   color: var(--text);
   background: var(--bg);

@@ -1,4 +1,4 @@
-import { GUTTER, MONO, fluid, h2Style, serifItalic } from '../../styles/type';
+import { GUTTER, MONO, fluid, h2Style } from '../../styles/type';
 
 interface Row {
   label: string;
@@ -24,7 +24,7 @@ const ROWS: readonly Row[] = [
 
 export function ArchitectureSection() {
   return (
-    <section aria-label="Mimari" style={{ background: '#F0B54A', color: '#0C0A09' }}>
+    <section aria-label="Mimari" className="band-amber">
       <div
         style={{
           maxWidth: '1360px',
@@ -45,10 +45,10 @@ export function ArchitectureSection() {
           }}
         >
           <h2 style={h2Style}>
-            Nasıl <span style={serifItalic}>kurgulandı</span>
+            Nasıl <span className="band-em">kurgulandı</span>
           </h2>
           <p
-            style={{ margin: '0', maxWidth: '440px', fontSize: '17px', lineHeight: '1.55', color: '#4A4843' }}
+            style={{ margin: '0', maxWidth: '440px', fontSize: '17px', lineHeight: '1.55', color: '#4a3519' }}
           >
             Mikroservisler RabbitMQ üzerinden konuşuyor; satış otomasyonuyla senkron servisler bayi verisini
             güncel tutuyor. Hepsi Docker konteynerlerinde.
@@ -63,7 +63,7 @@ export function ArchitectureSection() {
                 flexWrap: 'wrap',
                 gap: '8px 32px',
                 padding: '24px 0',
-                borderBottom: '1px solid rgba(12, 10, 9,.22)',
+                borderBottom: '1px solid rgba(26, 18, 10,.22)',
                 alignItems: 'baseline',
               }}
             >
@@ -72,7 +72,7 @@ export function ArchitectureSection() {
                   flex: '0 0 160px',
                   fontFamily: MONO,
                   fontSize: '12px',
-                  color: r.strongLabel ? '#0C0A09' : '#4A4843',
+                  color: r.strongLabel ? '#0C0A09' : '#4a3519',
                   letterSpacing: '.06em',
                 }}
               >
@@ -85,7 +85,7 @@ export function ArchitectureSection() {
                 {r.aside && (
                   <>
                     {' '}
-                    <span style={{ color: '#6A6862' }}>{r.aside}</span>
+                    <span style={{ color: '#6b4c22' }}>{r.aside}</span>
                   </>
                 )}
               </span>

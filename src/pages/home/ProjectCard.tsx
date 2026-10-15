@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { ProjectRow } from '../../data/home';
 import { ROUTES } from '../../routes';
-import { ScrambleText } from './ScrambleText';
+import { ScrambleText } from '../../components/ScrambleText';
 
 export const ArrowRight = () => (
   <svg

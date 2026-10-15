@@ -2,7 +2,7 @@ import { useState, type PointerEvent } from 'react';
 import { CATEGORIES, FEATURED_CATS, PROJECTS, type CategoryId } from '../../data/home';
 import { FeaturedProject } from './FeaturedProject';
 import { ProjectCard } from './ProjectCard';
-import { SectionHead } from './SectionHead';
+import { SectionHead } from '../../components/SectionHead';
 
 const inCategory = (cats: readonly CategoryId[], id: CategoryId) => id === 'all' || cats.includes(id);
 const countFor = (id: CategoryId) =>

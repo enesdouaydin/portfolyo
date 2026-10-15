@@ -29,12 +29,7 @@ function HeroBottom({ stage, noScroll }: { stage: number; noScroll: boolean }) {
   const chips = CHIP_LABELS.map((lb, i) => {
     const on = stage >= 1 && i === act;
     const done = i < act;
-    return {
-      label: lb,
-      border: on ? '#F0B54A' : done ? '#6A6862' : '#2F2F34',
-      background: on ? 'rgba(240, 181, 74,.14)' : 'rgba(12, 10, 9,.6)',
-      color: on ? '#F2EBDF' : done ? '#C9C6BE' : '#8A877F',
-    };
+    return { label: lb, state: on ? 'on' : done ? 'done' : undefined } as const;
   });
   return (
     <>

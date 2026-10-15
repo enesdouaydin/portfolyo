@@ -1,9 +1,7 @@
-import './home.css';
 import { ContactPill, SiteHeader } from '../../components/SiteHeader';
 import { HeroStage } from '../../components/HeroStage';
 import { usePageTitle } from '../../hooks/usePageTitle';
-import { useReveal } from '../../hooks/useReveal';
-import { useMagnetic } from '../../hooks/useMagnetic';
+import { PageShell } from '../../components/PageShell';
 import { createHeroScene, heroStageOptions } from '../../scenes/heroScene';
 import { HeroOverlay } from './HeroOverlay';
 import { Ticker } from './Ticker';
@@ -12,9 +10,7 @@ import { WorkSection } from './WorkSection';
 import { ExperienceSection } from './ExperienceSection';
 import { CapabilitiesSection } from './CapabilitiesSection';
 import { ContactSection } from './ContactSection';
-import { CursorGlow } from './CursorGlow';
 import { Intro } from './Intro';
-import { SaberProgress } from './SaberProgress';
 
 const HERO_LABEL =
   'Enes’in 3D figürü kırmızı bir ışın kılıcını iki eli arasında çeviriyor; sayfa kaydırıldıkça dönüyor ve kılıcın iki yanında teknolojiler beliriyor';
@@ -25,13 +21,9 @@ const HERO_LABEL =
  */
 export default function Home() {
   usePageTitle('Enes Dou Aydın — Portfolyo');
-  useReveal();
-  useMagnetic();
   return (
-    <div className="home on">
+    <PageShell>
       <Intro />
-      <SaberProgress />
-      <CursorGlow />
       <SiteHeader home>
         <a className="nl" href="#isler">
           İşler
@@ -61,6 +53,6 @@ export default function Home() {
         <CapabilitiesSection />
         <ContactSection />
       </main>
-    </div>
+    </PageShell>
   );
 }

@@ -1,5 +1,5 @@
 import { EXPERIENCE } from '../../data/profile';
-import { SectionHead } from './SectionHead';
+import { SectionHead } from '../../components/SectionHead';
 
 /** Deneyim: sarı bant üzerinde zaman çizelgesi. */
 export function ExperienceSection() {

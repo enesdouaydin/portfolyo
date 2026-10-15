@@ -18,23 +18,26 @@
   }
 }
 
-/* Tablet ve telefon: yapışkan sahne üst menünün altında durur, böylece ilk açılışta alt satır
-   (sayaçlar, kaydırma ipucu) ekranın dışında kalmaz. Mobil tarayıcıda adres çubuğu için svh kullanılır. */
-@media (max-width: 1024px) {
-  .hero-sticky {
-    top: var(--hdr) !important;
-    height: min(calc(100vh - var(--hdr)), 920px) !important;
-  }
+/* Yapışkan sahne üst menünün altında durur; böylece ilk açılışta alt satır (sayaçlar, ipucu) ekranda kalır.
+   Mobil tarayıcıda adres çubuğu için svh kullanılır. Kaydırma ilerlemesi (runtime.ts) bu kaymayı hesaba katar. */
+.hero-sticky {
+  top: var(--hdr) !important;
+  height: min(calc(100vh - var(--hdr)), 920px) !important;
+}
+.hero-stage[data-noscroll] {
+  height: min(calc(100vh - var(--hdr)), 920px) !important;
+}
+@supports (height: 100svh) {
+  .hero-sticky,
   .hero-stage[data-noscroll] {
-    height: min(calc(100vh - var(--hdr)), 920px) !important;
+    height: min(calc(100svh - var(--hdr)), 920px) !important;
   }
-  @supports (height: 100svh) {
-    .hero-sticky,
-    .hero-stage[data-noscroll] {
-      height: min(calc(100svh - var(--hdr)), 920px) !important;
-    }
-  }
-  /* Üst menüyü aşmak için bırakılan boşluk artık gerekmiyor. */
+}
+/* Menü artık sahnenin üstünü örtmüyor; metin bloğu yukarı yaklaşabilir. */
+.hero-overlay {
+  padding-top: 48px !important;
+}
+@media (max-width: 1024px) {
   .hero-overlay {
     padding-top: 32px !important;
   }

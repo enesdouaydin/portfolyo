@@ -15,25 +15,25 @@ export function BayiRotaHeroBottom({ visited, noScroll }: { visited: number; noS
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-        <span style={{ fontFamily: MONO, fontSize: '12px', color: '#8A877F', letterSpacing: '.04em' }}>
+        <span style={{ fontFamily: MONO, fontSize: '12px', color: '#8a7e6e', letterSpacing: '.04em' }}>
           {phase}
         </span>
         <span
           style={{
             fontSize: 'clamp(40px,4.4vw,64px)',
-            letterSpacing: '-0.045em',
+            letterSpacing: '-0.02em',
             lineHeight: '1',
             fontWeight: '400',
           }}
         >
           {visited}
-          <span style={{ color: '#6A6862' }}> / {STOPS}</span>{' '}
+          <span style={{ color: '#6f6457' }}> / {STOPS}</span>{' '}
           <span
             style={{
-              fontFamily: SERIF,
-              fontStyle: 'italic',
+              fontFamily: 'var(--font-display)',
+              fontWeight: '600',
               fontSize: '.6em',
-              color: '#A8A59D',
+              color: 'var(--accent)',
               letterSpacing: '-0.01em',
             }}
           >
@@ -48,7 +48,7 @@ export function BayiRotaHeroBottom({ visited, noScroll }: { visited: number; noS
                 flex: '1',
                 height: '3px',
                 borderRadius: '3px',
-                background: i < visited ? '#F0B54A' : '#2A2A2E',
+                background: i < visited ? '#F0B54A' : '#2b241e',
               }}
             />
           ))}

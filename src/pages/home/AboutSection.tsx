@@ -1,6 +1,6 @@
 import { METRICS } from '../../data/home';
 import { CountUp } from './CountUp';
-import { stagger } from './reveal';
+import { stagger } from '../../components/stagger';
 
 /** Kısa tanıtım cümlesi ve dört büyük sayı. */
 export function AboutSection() {

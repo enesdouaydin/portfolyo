@@ -16,14 +16,14 @@ import { SESLI_ASISAN_FLOW } from '../../data/sesliFlow';
 
 /** Örnek görüşme: sahnenin `stage` değeri `at`'e ulaşınca satır görünür; en son iki satır gösterilir. */
 const TRANSCRIPT = [
-  { who: 'MÜŞTERİ', text: 'Merhaba, dün verdiğim sipariş ne zaman gelir?', at: 1, c: '#A8A59D' },
+  { who: 'MÜŞTERİ', text: 'Merhaba, dün verdiğim sipariş ne zaman gelir?', at: 1, c: '#ab9f8e' },
   {
     who: 'ASİSTAN',
     text: 'Kontrol ediyorum. Siparişiniz bugün kargoya verildi, yarın teslim edilecek.',
     at: 3,
     c: '#F0B54A',
   },
-  { who: 'MÜŞTERİ', text: 'Teslimat adresini değiştirebilir miyim?', at: 4, c: '#A8A59D' },
+  { who: 'MÜŞTERİ', text: 'Teslimat adresini değiştirebilir miyim?', at: 4, c: '#ab9f8e' },
   {
     who: 'ASİSTAN',
     text: 'Elbette. Yeni adresinizi söyler misiniz? Kargo firmasına hemen ileteyim.',
@@ -40,12 +40,7 @@ function HeroBottom({ stage, noScroll }: { stage: number; noScroll: boolean }) {
     stage === 0 ? 0 : stage === 1 || stage === 4 ? 1 : stage === 2 ? 2 : stage === 3 || stage === 5 ? 3 : -1;
   const chips = CHIP_LABELS.map((lb, i) => {
     const on = i === act;
-    return {
-      label: (i ? '→ ' : '') + lb,
-      border: on ? '#F0B54A' : '#2F2F34',
-      background: on ? 'rgba(240, 181, 74,.14)' : 'rgba(12, 10, 9,.6)',
-      color: on ? '#F2EBDF' : '#8A877F',
-    };
+    return { label: (i ? '→ ' : '') + lb, state: on ? 'on' : undefined } as const;
   });
   return (
     <>
@@ -69,7 +64,7 @@ function HeroBottom({ stage, noScroll }: { stage: number; noScroll: boolean }) {
                 gap: '12px',
                 alignItems: 'baseline',
                 background: 'rgba(12, 10, 9,.72)',
-                border: '1px solid #232327',
+                border: '1px solid #2b241e',
                 borderRadius: '12px',
                 padding: '10px 14px',
               }}

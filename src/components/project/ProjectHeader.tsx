@@ -1,18 +1,13 @@
 import { Link } from 'react-router-dom';
 import { SITE } from '../../data/site';
 import { ROUTES } from '../../routes';
-import { MONO } from '../../styles/type';
 import { ContactPill, SiteHeader } from '../SiteHeader';
 
 /** Proje sayfalarının üst menüsü: "Tüm işler" geri bağlantısı, vaka numarası ve iletişim. */
 export function ProjectHeader({ caseNo }: { caseNo: string }) {
   return (
     <SiteHeader>
-      <Link
-        className="nl"
-        to={ROUTES.home}
-        style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
-      >
+      <Link className="nl back-link" to={ROUTES.home}>
         <svg
           aria-hidden="true"
           width="15"
@@ -28,7 +23,7 @@ export function ProjectHeader({ caseNo }: { caseNo: string }) {
         </svg>
         Tüm işler
       </Link>
-      <span style={{ fontFamily: MONO, fontSize: '12px', color: '#8A8A8A' }}>Vaka {caseNo} / 07</span>
+      <span className="mono case-no">Vaka {caseNo} / 07</span>
       <ContactPill href={`mailto:${SITE.email}`} />
     </SiteHeader>
   );

@@ -1,13 +1,336 @@
-/* Proje sayfalarında ortak: "Sıradaki proje" bandının hover davranışı. */
-.next .na {
-  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+/*
+ * Proje (vaka çalışması) sayfaları. Ortak parçalar (başlık, kart, rozet, kaydırınca belirme…) site.css'te;
+ * burada yalnızca proje sayfalarına özgü düzenler var.
+ */
+
+/* --- üst menü ------------------------------------------------------------------------------ */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
-.next:hover .na {
-  transform: translateX(14px);
+.back-link svg {
+  transition: transform 0.35s var(--ease);
 }
-.next .nt {
-  transition: color 0.3s ease;
+.back-link:hover svg {
+  transform: translateX(-4px);
 }
-.next:hover .nt {
-  color: #f0b54a;
+.case-no {
+  color: var(--faint);
+}
+
+/* --- hero ---------------------------------------------------------------------------------- */
+.hero-overlay--project {
+  padding-top: 96px;
+  padding-bottom: 36px;
+}
+.project-hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px 64px;
+  flex-wrap: wrap;
+}
+.project-h1 {
+  font-size: clamp(48px, 6.2vw, 100px);
+}
+.project-lead {
+  max-width: 380px;
+  font-size: 16px;
+  padding-top: 8px;
+}
+.hero-foot {
+  pointer-events: none;
+}
+.stage-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.stage-chips li {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 6px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: rgba(12, 10, 9, 0.6);
+  color: var(--faint);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.stage-chips li.done {
+  border-color: var(--faint);
+  color: var(--muted);
+}
+.stage-chips li.on {
+  border-color: var(--accent);
+  background: rgba(240, 181, 74, 0.16);
+  color: var(--text);
+  box-shadow: 0 0 18px rgba(240, 181, 74, 0.25);
+}
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: rise 0.6s var(--ease) both;
+}
+.hero-stat-value {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: 48px;
+  line-height: 0.9;
+}
+.hero-stat .mono {
+  color: var(--muted);
+  font-size: 11px;
+}
+.unit {
+  font-size: 0.5em;
+  font-weight: 600;
+  color: var(--accent);
+  margin-left: 3px;
+}
+
+/* --- künye --------------------------------------------------------------------------------- */
+.project-meta {
+  padding-block: clamp(56px, 7vw, 88px) clamp(40px, 5vw, 64px);
+}
+.meta-grid {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 12px;
+}
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  transition:
+    border-color 0.3s ease,
+    transform 0.45s var(--ease);
+}
+.meta-item:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+}
+.meta-item dt {
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.meta-item dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-stretch: 90%;
+  font-size: 19px;
+  line-height: 1.25;
+}
+
+/* --- hikâye (problem / yaklaşım / sonuç) --------------------------------------------------- */
+.story {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: 16px;
+  padding-block: 16px clamp(88px, 11vw, 140px);
+}
+.story-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+.story-num {
+  position: absolute;
+  right: 18px;
+  top: 6px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: 96px;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--line-strong);
+  pointer-events: none;
+  transition: -webkit-text-stroke-color 0.4s ease;
+}
+.story-item:hover .story-num {
+  -webkit-text-stroke-color: var(--accent);
+}
+.story-title {
+  position: relative;
+  font-size: clamp(26px, 2.4vw, 34px);
+  color: var(--accent);
+  max-width: 75%;
+}
+.story-item p {
+  position: relative;
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+/* --- nasıl çalışıyor ------------------------------------------------------------------------ */
+.flow {
+  padding-top: 0;
+}
+.flow-caption {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--faint);
+}
+.flow-steps {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: 16px;
+}
+.flow-role {
+  font-size: clamp(24px, 2.2vw, 30px);
+  line-height: 1;
+}
+.flow-says {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-stretch: 92%;
+  font-size: 19px;
+  line-height: 1.3;
+  color: var(--text);
+  padding-left: 14px;
+  border-left: 2px solid var(--saber);
+}
+.flow-exits {
+  margin-top: auto;
+}
+.flow-notes {
+  padding-bottom: 0;
+}
+
+/* --- sıradaki proje ------------------------------------------------------------------------ */
+.next {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  color: var(--text);
+  text-decoration: none;
+  border-block: 1px solid var(--line);
+  isolation: isolate;
+}
+.next::before {
+  /* üstüne gelince soldan dolan amber zemin */
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s var(--ease);
+}
+.next:hover {
+  color: var(--accent-ink);
+}
+.next:hover::before {
+  transform: scaleX(1);
+}
+.next-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-block: clamp(72px, 10vw, 128px);
+}
+.next-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.next:hover .eyebrow {
+  color: var(--accent-ink);
+}
+.next:hover .eyebrow::before {
+  background: var(--accent-ink);
+}
+.next-title {
+  font-size: clamp(56px, 9vw, 150px);
+  line-height: 0.88;
+}
+.next:hover .next-title .hl {
+  color: var(--accent-ink);
+}
+.next-arrow {
+  display: inline-grid;
+  place-items: center;
+  width: clamp(72px, 8vw, 112px);
+  height: clamp(72px, 8vw, 112px);
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  transition:
+    transform 0.6s var(--ease),
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+.next:hover .next-arrow {
+  transform: translateX(12px) rotate(-45deg);
+  background: var(--accent-ink);
+  border-color: var(--accent-ink);
+  color: var(--accent);
+}
+.next:hover .scramble-char {
+  color: var(--saber);
+}
+
+/* --- amber bant (Bayi Rota mimari bölümü) ------------------------------------------------- */
+.band-amber {
+  --cut: clamp(24px, 4vw, 60px);
+  background: var(--accent);
+  color: var(--accent-ink);
+  clip-path: polygon(0 var(--cut), 100% 0, 100% calc(100% - var(--cut)), 0 100%);
+  padding-block: var(--cut);
+}
+
+.band-em {
+  /* amber zeminde vurgu: içi boş, koyu kontur */
+  color: transparent;
+  -webkit-text-stroke: 2px var(--accent-ink);
+}
+
+/* --- proje içindeki büyük başlıklar (h2Style kullanan bölümler) ---------------------------- */
+.eyebrow--wrap {
+  flex-wrap: wrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stat {
+    animation: none;
+  }
+  .next::before,
+  .next-arrow {
+    transition: none;
+  }
 }

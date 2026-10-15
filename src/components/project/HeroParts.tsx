@@ -1,41 +1,17 @@
 import type { ReactNode } from 'react';
-import { MONO, SERIF } from '../../styles/type';
 
 export interface StageChip {
   label: string;
-  border: string;
-  background: string;
-  color: string;
+  /** `on`: şu anki aşama (amber), `done`: geçilmiş aşama. */
+  state?: 'on' | 'done';
 }
 
-/** Hero'nun altındaki aşama hapları (ARAMA → STT → …); aktif olan sarı çerçeveli. */
+/** Hero'nun altındaki aşama hapları (ARAMA → STT → …). */
 export function StageChips({ chips }: { chips: readonly StageChip[] }) {
   return (
-    <ol
-      style={{
-        listStyle: 'none',
-        margin: '0',
-        padding: '0',
-        display: 'flex',
-        gap: '6px',
-        flexWrap: 'wrap',
-        alignItems: 'center',
-      }}
-    >
+    <ol className="stage-chips">
       {chips.map((c) => (
-        <li
-          key={c.label}
-          style={{
-            fontFamily: MONO,
-            fontSize: '11px',
-            letterSpacing: '.06em',
-            padding: '6px 11px',
-            borderRadius: '999px',
-            border: `1px solid ${c.border}`,
-            background: c.background,
-            color: c.color,
-          }}
-        >
+        <li key={c.label} className={c.state}>
           {c.label}
         </li>
       ))}
@@ -43,17 +19,17 @@ export function StageChips({ chips }: { chips: readonly StageChip[] }) {
   );
 }
 
-/** Sayının yanındaki küçük birim ("sn", "saniye"): gri serif italik. */
+/** Sayının yanındaki küçük birim ("sn", "saniye"). */
 export function Unit({ children }: { children: ReactNode }) {
-  return <span style={{ fontFamily: SERIF, fontStyle: 'italic', color: '#A8A59D' }}>{children}</span>;
+  return <small className="unit">{children}</small>;
 }
 
 /** Hero'nun sağ altında, sahne bitince beliren büyük sayı + mono açıklama. */
 export function HeroStat({ value, label }: { value: ReactNode; label: string }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-      <span style={{ fontSize: '36px', letterSpacing: '-0.04em' }}>{value}</span>
-      <span style={{ fontFamily: MONO, fontSize: '11px', color: '#A8A59D' }}>{label}</span>
+    <div className="hero-stat">
+      <span className="hero-stat-value">{value}</span>
+      <span className="mono">{label}</span>
     </div>
   );
 }
@@ -61,16 +37,7 @@ export function HeroStat({ value, label }: { value: ReactNode; label: string }) 
 /** "Kaydır, …" ipucu: mono yazı + aşağı ok. `prefix` varsa ("örnek veri · ") önüne gelir. */
 export function ScrollHint({ prefix, hint }: { prefix?: string; hint: string }) {
   return (
-    <span
-      style={{
-        fontFamily: MONO,
-        fontSize: '12px',
-        color: '#8A877F',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '10px',
-      }}
-    >
+    <span className="hero-hint">
       {prefix}
       {hint}
       <svg
