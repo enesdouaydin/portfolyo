@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type PointerEvent } from 'react';
 import { CATEGORIES, FEATURED_CATS, PROJECTS, type CategoryId } from '../../data/home';
 import { FeaturedProject } from './FeaturedProject';
 import { ProjectCard } from './ProjectCard';
@@ -7,6 +7,15 @@ import { SectionHead } from './SectionHead';
 const inCategory = (cats: readonly CategoryId[], id: CategoryId) => id === 'all' || cats.includes(id);
 const countFor = (id: CategoryId) =>
   PROJECTS.filter((p) => inCategory(p.cats, id)).length + (inCategory(FEATURED_CATS, id) ? 1 : 0);
+
+/** Fare hangi kartın üstündeyse ışığı oraya taşır (home.css: .card::after, --mx/--my). */
+function moveSpotlight(e: PointerEvent<HTMLUListElement>) {
+  const card = (e.target as Element).closest<HTMLElement>('.card');
+  if (!card) return;
+  const r = card.getBoundingClientRect();
+  card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+  card.style.setProperty('--my', `${e.clientY - r.top}px`);
+}
 
 /** Seçili işler: kategori filtresi, öne çıkan Bayi Rota kartı ve proje ızgarası. */
 export function WorkSection() {
@@ -37,7 +46,7 @@ export function WorkSection() {
             </button>
           ))}
         </div>
-        <ul className="work-grid">
+        <ul className="work-grid" onPointerMove={moveSpotlight}>
           {showFeatured && <FeaturedProject />}
           {shown.map((p) => (
             <li key={p.n} className="reveal">

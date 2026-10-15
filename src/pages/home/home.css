@@ -230,39 +230,72 @@
   }
 }
 
-/* --- kayan teknoloji şeridi ---------------------------------------------------------------- */
+/* --- çapraz kesişen iki şerit ------------------------------------------------------------- */
+.tickers {
+  position: relative;
+  height: clamp(130px, 13vw, 190px);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
 .ticker {
+  position: absolute;
+  left: -6%;
+  width: 112%;
+  overflow: hidden;
+  border-block: 2px solid #000;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+.ticker--accent {
   background: var(--accent);
   color: var(--accent-ink);
-  overflow: hidden;
-  border-block: 1px solid #000;
+  transform: rotate(-3deg);
+  z-index: 2;
+}
+.ticker--saber {
+  background: var(--saber);
+  color: #fff;
+  transform: rotate(3deg);
 }
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: ticker 48s linear infinite;
+  animation: ticker 52s linear infinite;
 }
-.ticker:hover .ticker-track {
+.ticker--saber .ticker-track {
+  animation-duration: 64s;
+  animation-direction: reverse;
+}
+.tickers:hover .ticker-track {
   animation-play-state: paused;
 }
 .ticker-item {
   display: inline-flex;
   align-items: center;
   gap: 22px;
-  padding: 16px 22px 14px 0;
+  padding: 14px 22px 12px 0;
   font-family: var(--font-display);
-  font-weight: 700;
-  font-stretch: 80%;
-  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 800;
+  font-stretch: 78%;
+  font-size: clamp(24px, 2.6vw, 36px);
   letter-spacing: -0.01em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 .ticker-item::after {
   content: '';
   width: 10px;
   height: 10px;
-  background: var(--accent-ink);
+  background: currentColor;
   transform: rotate(45deg);
+}
+@media (max-width: 760px) {
+  .ticker--accent {
+    transform: rotate(-6deg);
+  }
+  .ticker--saber {
+    transform: rotate(6deg);
+  }
 }
 @keyframes ticker {
   to {
@@ -426,6 +459,25 @@
 }
 .card:hover::before {
   transform: scaleX(1);
+}
+.card::after {
+  /* fareyi izleyen kılıç parıltısı (WorkSection: --mx/--my) */
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background:
+    radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 59, 47, 0.16), transparent 70%),
+    radial-gradient(120px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 214, 10, 0.08), transparent 70%);
+}
+.card:hover::after {
+  opacity: 1;
+}
+.card > * {
+  position: relative;
+  z-index: 1;
 }
 .card-top {
   display: flex;
@@ -625,8 +677,14 @@
 
 /* --- deneyim (sarı bant) ------------------------------------------------------------------- */
 .experience {
+  --cut: clamp(28px, 5vw, 72px);
   background: var(--accent);
   color: var(--accent-ink);
+  clip-path: polygon(0 var(--cut), 100% 0, 100% calc(100% - var(--cut)), 0 100%);
+  padding-block: calc(clamp(88px, 11vw, 152px) + var(--cut));
+  margin-block: calc(var(--cut) * -0.5);
+  position: relative;
+  z-index: 1;
 }
 .experience .sec-num {
   -webkit-text-stroke-color: rgba(10, 10, 10, 0.35);
@@ -784,8 +842,33 @@
   gap: clamp(48px, 6vw, 80px);
 }
 .contact-title {
-  font-size: clamp(60px, 11vw, 176px);
-  line-height: 0.86;
+  font-size: clamp(48px, 7vw, 112px);
+  line-height: 0.9;
+}
+.contact-big {
+  display: block;
+  font-size: clamp(72px, 21vw, 340px);
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 0.8;
+  letter-spacing: -0.03em;
+  margin-top: 0.06em;
+  white-space: nowrap;
+}
+.contact-big span {
+  display: inline-block;
+}
+.js-reveal .contact-title .contact-big span {
+  transform: translateY(0.5em) rotate(6deg);
+  opacity: 0;
+  transition:
+    transform 0.9s var(--ease),
+    opacity 0.9s var(--ease);
+  transition-delay: calc(var(--i) * 0.05s + 0.15s);
+}
+.js-reveal .contact-title.is-in .contact-big span {
+  transform: none;
+  opacity: 1;
 }
 .contact-row {
   display: flex;
@@ -827,6 +910,27 @@
 .contact .footer-row {
   border-top: 1px solid var(--line);
   padding-top: 28px;
+}
+
+/* --- imleç parıltısı ---------------------------------------------------------------------- */
+.cursor-glow {
+  position: fixed;
+  left: -260px;
+  top: -260px;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 25;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    circle,
+    rgba(255, 59, 47, 0.1) 0%,
+    rgba(255, 59, 47, 0.04) 35%,
+    transparent 65%
+  );
+  mix-blend-mode: screen;
 }
 
 /* --- hareket ------------------------------------------------------------------------------- */
@@ -874,7 +978,8 @@
   .badge--live::before {
     animation: none;
   }
-  .js-reveal .reveal {
+  .js-reveal .reveal,
+  .js-reveal .contact-title .contact-big span {
     opacity: 1;
     transform: none;
     transition: none;

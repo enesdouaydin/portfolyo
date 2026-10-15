@@ -1,4 +1,5 @@
 import { METRICS } from '../../data/home';
+import { CountUp } from './CountUp';
 import { stagger } from './reveal';
 
 /** Kısa tanıtım cümlesi ve dört büyük sayı. */
@@ -17,7 +18,7 @@ export function AboutSection() {
               <dt>{m.label}</dt>
               <dd>
                 {m.prefix && <small className="pre">{m.prefix}</small>}
-                {m.value}
+                <CountUp value={m.value} />
                 {m.unit && <small>{m.unit}</small>}
               </dd>
             </div>

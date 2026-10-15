@@ -11,6 +11,7 @@ import { WorkSection } from './WorkSection';
 import { ExperienceSection } from './ExperienceSection';
 import { CapabilitiesSection } from './CapabilitiesSection';
 import { ContactSection } from './ContactSection';
+import { CursorGlow } from './CursorGlow';
 
 const HERO_LABEL =
   'Enes’in 3D figürü kırmızı bir ışın kılıcını iki eli arasında çeviriyor; sayfa kaydırıldıkça dönüyor ve kılıcın iki yanında teknolojiler beliriyor';
@@ -24,6 +25,7 @@ export default function Home() {
   useReveal();
   return (
     <div className="home on">
+      <CursorGlow />
       <SiteHeader home>
         <a className="nl" href="#isler">
           İşler

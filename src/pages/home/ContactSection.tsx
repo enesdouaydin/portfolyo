@@ -1,3 +1,4 @@
+import type React from 'react';
 import { SiteFooter } from '../../components/SiteFooter';
 import { SITE } from '../../data/site';
 
@@ -10,7 +11,14 @@ export function ContactSection() {
         <h2 id="iletisim-baslik" className="display contact-title reveal">
           Bir fikrin mi var?
           <br />
-          <span className="hl">Kuralım.</span>
+          <span className="sr-only">Kuralım.</span>
+          <span className="contact-big hl" aria-hidden="true">
+            {Array.from('Kuralım.').map((ch, i) => (
+              <span key={i} style={{ '--i': i } as React.CSSProperties}>
+                {ch}
+              </span>
+            ))}
+          </span>
         </h2>
         <div className="contact-row reveal">
           <a href={`mailto:${SITE.email}`} className="mail">
