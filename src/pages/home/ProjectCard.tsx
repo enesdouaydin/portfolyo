@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { ProjectRow } from '../../data/home';
 import { ROUTES } from '../../routes';
+import { ScrambleText } from './ScrambleText';
 
 export const ArrowRight = () => (
   <svg
@@ -30,7 +31,9 @@ export function ProjectCard({ p }: { p: ProjectRow }) {
         <span>{p.n}</span>
         <span>{p.kind}</span>
       </span>
-      <h3 className="display card-title">{p.title}</h3>
+      <h3 className="display card-title">
+        <ScrambleText text={p.title} />
+      </h3>
       <p className="card-line">{p.line}</p>
       <span className="card-foot">
         <span className="badges">

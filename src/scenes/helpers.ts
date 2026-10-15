@@ -19,7 +19,7 @@ export function mk(
 
 /** Proje sayfalarının ortak ışıkları: yarım küre + gölge düşüren anahtar ışık + mavi kenar ışığı. */
 export function mkLights(scene: T.Scene, size: number) {
-  scene.add(new T.HemisphereLight(0xf2efe8, 0x0a0a0a, 0.5));
+  scene.add(new T.HemisphereLight(0xf2efe8, 0x0c0a09, 0.5));
   const key = new T.DirectionalLight(0xfff1e4, 1.5);
   key.position.set(size * 0.5, size * 0.9, size * 0.6);
   key.castShadow = true;

@@ -21,14 +21,14 @@ const TRANSCRIPT = [
     who: 'ASİSTAN',
     text: 'Kontrol ediyorum. Siparişiniz bugün kargoya verildi, yarın teslim edilecek.',
     at: 3,
-    c: '#FFD60A',
+    c: '#F0B54A',
   },
   { who: 'MÜŞTERİ', text: 'Teslimat adresini değiştirebilir miyim?', at: 4, c: '#A8A59D' },
   {
     who: 'ASİSTAN',
     text: 'Elbette. Yeni adresinizi söyler misiniz? Kargo firmasına hemen ileteyim.',
     at: 5,
-    c: '#FFD60A',
+    c: '#F0B54A',
   },
 ];
 
@@ -42,9 +42,9 @@ function HeroBottom({ stage, noScroll }: { stage: number; noScroll: boolean }) {
     const on = i === act;
     return {
       label: (i ? '→ ' : '') + lb,
-      border: on ? '#FFD60A' : '#2F2F34',
-      background: on ? 'rgba(255,214,10,.14)' : 'rgba(10,10,10,.6)',
-      color: on ? '#EDEBE6' : '#8A877F',
+      border: on ? '#F0B54A' : '#2F2F34',
+      background: on ? 'rgba(240, 181, 74,.14)' : 'rgba(12, 10, 9,.6)',
+      color: on ? '#F2EBDF' : '#8A877F',
     };
   });
   return (
@@ -68,7 +68,7 @@ function HeroBottom({ stage, noScroll }: { stage: number; noScroll: boolean }) {
                 display: 'flex',
                 gap: '12px',
                 alignItems: 'baseline',
-                background: 'rgba(10,10,10,.72)',
+                background: 'rgba(12, 10, 9,.72)',
                 border: '1px solid #232327',
                 borderRadius: '12px',
                 padding: '10px 14px',
@@ -77,7 +77,7 @@ function HeroBottom({ stage, noScroll }: { stage: number; noScroll: boolean }) {
               <span style={{ fontFamily: MONO, fontSize: '11px', color: l.c, flex: '0 0 70px' }}>
                 {l.who}
               </span>
-              <span style={{ fontSize: '16px', lineHeight: '1.45', color: '#EDEBE6' }}>{l.text}</span>
+              <span style={{ fontSize: '16px', lineHeight: '1.45', color: '#F2EBDF' }}>{l.text}</span>
             </li>
           ))}
         </ul>

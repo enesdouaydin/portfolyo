@@ -20,7 +20,7 @@ export function NextProject({ to, eyebrow, title, borderTop = true }: Props) {
       style={{
         display: 'block',
         textDecoration: 'none',
-        color: '#EDEBE6',
+        color: '#F2EBDF',
         ...(borderTop ? { borderTop: '1px solid #1F1F1F' } : null),
         borderBottom: '1px solid #1F1F1F',
       }}

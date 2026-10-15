@@ -8,8 +8,8 @@ export function PageShell({ children }: { children: ReactNode }) {
       className="on"
       style={{
         fontFamily: SANS,
-        color: '#EDEBE6',
-        background: '#0A0A0A',
+        color: '#F2EBDF',
+        background: '#0C0A09',
         minHeight: '100%',
         WebkitFontSmoothing: 'antialiased',
       }}

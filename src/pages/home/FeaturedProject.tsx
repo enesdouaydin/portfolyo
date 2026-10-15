@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { DEMO_ROUTES, DEPOT } from '../../data/routeDemo';
 import { ROUTES } from '../../routes';
 import { ArrowRight } from './ProjectCard';
+import { ScrambleText } from './ScrambleText';
 
 const STACK = ['Python · FastAPI', 'PostgreSQL', 'RabbitMQ · Redis', 'k-means · 2-opt'];
 const DISTRICTS: ReadonlyArray<[string, number, number]> = [
@@ -65,7 +66,7 @@ function RouteMap() {
                 fontFamily="var(--font-mono)"
                 fontSize="2"
                 fontWeight="600"
-                fill="#0A0A0A"
+                fill="#0C0A09"
                 textAnchor="middle"
               >
                 {i + 1}
@@ -79,7 +80,7 @@ function RouteMap() {
           width="5"
           height="5"
           rx="1"
-          fill="#FFD60A"
+          fill="#F0B54A"
           stroke="#121212"
           strokeWidth=".8"
         />
@@ -107,7 +108,9 @@ export function FeaturedProject() {
             <span>01 — Optimizasyon · Full-stack</span>
             <span className="badge badge--live">Sahada kullanımda</span>
           </span>
-          <h3 className="display featured-title">Bayi Rota Optimizasyonu</h3>
+          <h3 className="display featured-title">
+            <ScrambleText text="Bayi Rota Optimizasyonu" />
+          </h3>
           <p className="featured-lead">
             Saha satış temsilcilerinin bayilerini bölgelere kümeleyip rotalayan sistem. Kâğıt üzerinde bir
             hafta süren planlama artık 10 saniye, rotalar ortalama yarı yarıya kısa.

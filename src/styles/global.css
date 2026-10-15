@@ -1,20 +1,20 @@
 /*
  * Ortak tasarım dili. Renkler ve yazı tipleri burada değişken olarak tanımlı;
- * bileşenler bunları kullanır. Zemin rengi 3D sahnelerin temizleme rengiyle aynıdır (#0A0A0A).
+ * bileşenler bunları kullanır. Zemin rengi 3D sahnelerin temizleme rengiyle aynıdır (#0C0A09).
  */
 :root {
-  /* renk */
-  --bg: #0a0a0a;
-  --surface: #121110;
-  --surface-2: #191816;
-  --line: #262420;
-  --line-strong: #3a3732;
-  --text: #f1ede4;
-  --muted: #a39e93;
-  --faint: #6e6a62;
-  --accent: #ffd60a; /* marka sarısı: butonlar, vurgular, 3D etiketler */
-  --accent-ink: #0a0a0a; /* sarının üstündeki yazı */
-  --saber: #ff3b2f; /* kılıcın kırmızısı: yalnızca "canlı" işaretleri */
+  /* renk: çöl gecesi. Kostümün kum ve deri tonları, kılıcın kırmızısı tek parlak vurgu. */
+  --bg: #0c0a09;
+  --surface: #15110e;
+  --surface-2: #1d1814;
+  --line: #2b241e;
+  --line-strong: #43392f;
+  --text: #f2ebdf; /* fildişi */
+  --muted: #ab9f8e; /* kum */
+  --faint: #6f6457; /* koyu kum */
+  --accent: #f0b54a; /* kum amber: butonlar, vurgular, 3D etiketler */
+  --accent-ink: #1a120a; /* amberin üstündeki yazı */
+  --saber: #ff4433; /* kılıç kırmızısı: canlı işaretler, parıltılar */
 
   /* yazı */
   --font-display: 'Bricolage Grotesque Variable', 'Arial Narrow', ui-sans-serif, system-ui, sans-serif;
@@ -30,6 +30,39 @@
 body {
   margin: 0;
   background: var(--bg);
+}
+/* sinematik film greni: tüm sayfanın üstünde çok hafif bir doku */
+body::after {
+  content: '';
+  position: fixed;
+  inset: -50%;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .85 0 0 0 1.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 0.9s steps(4) infinite;
+}
+@keyframes grain {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-3%, 2%);
+  }
+  50% {
+    transform: translate(2%, -3%);
+  }
+  75% {
+    transform: translate(-2%, -1%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    animation: none;
+  }
 }
 a {
   color: var(--text);
@@ -63,7 +96,7 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(10, 10, 10, 0.72);
+  background: rgba(12, 10, 9, 0.72);
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
   border-bottom: 1px solid var(--line);
@@ -135,7 +168,7 @@ a:hover {
   padding: 0 20px;
   border-radius: 999px;
   border: 1px solid var(--line-strong);
-  background: rgba(10, 10, 10, 0.4);
+  background: rgba(12, 10, 9, 0.4);
   color: var(--text);
   text-decoration: none;
   font-family: var(--font-sans);
@@ -146,7 +179,8 @@ a:hover {
     background 0.25s ease,
     color 0.25s ease,
     border-color 0.25s ease,
-    transform 0.35s var(--ease);
+    transform 0.35s var(--ease),
+    translate 0.25s var(--ease);
 }
 .pill:hover {
   border-color: var(--text);
@@ -159,8 +193,8 @@ a:hover {
   font-weight: 600;
 }
 .pill--accent:hover {
-  background: #fff;
-  border-color: #fff;
+  background: var(--text);
+  border-color: var(--text);
   color: var(--accent-ink);
   transform: translateY(-1px);
 }

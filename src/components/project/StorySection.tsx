@@ -25,7 +25,7 @@ export function StorySection({ items }: { items: ReadonlyArray<{ label: string; 
             paddingTop: '24px',
           }}
         >
-          <span style={{ fontFamily: MONO, fontSize: '12px', color: '#FFD60A', letterSpacing: '.06em' }}>
+          <span style={{ fontFamily: MONO, fontSize: '12px', color: '#F0B54A', letterSpacing: '.06em' }}>
             {it.label}
           </span>
           <p

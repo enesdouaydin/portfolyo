@@ -1,2 +1,2 @@
-/** Tek vurgu rengi: sarı. Butonlar, seçili durumlar, 3D ışıklar ve izler. */
-export const ACCENT = '#FFD60A';
+/** Vurgu rengi: kum amber (kostümün deri ve kum tonlarından). Butonlar, seçili durumlar, 3D etiketler. */
+export const ACCENT = '#F0B54A';

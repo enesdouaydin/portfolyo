@@ -87,7 +87,7 @@ export function FlowSection({ data }: { data: FlowContent }) {
                     fontStyle: 'italic',
                     fontSize: '20px',
                     lineHeight: '1.3',
-                    color: '#EDEBE6',
+                    color: '#F2EBDF',
                   }}
                 >
                   “{a.says}”

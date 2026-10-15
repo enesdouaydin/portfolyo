@@ -80,7 +80,7 @@ export function MediaPanel() {
               display: 'flex',
               gap: '4px',
               padding: '4px',
-              background: '#0A0A0A',
+              background: '#0C0A09',
               border: '1px solid #232327',
               borderRadius: '999px',
               flexWrap: 'wrap',
@@ -101,8 +101,8 @@ export function MediaPanel() {
                     padding: '0 18px',
                     borderRadius: '999px',
                     border: 'none',
-                    background: on ? '#FFD60A' : 'transparent',
-                    color: on ? '#0A0A0A' : '#A8A59D',
+                    background: on ? '#F0B54A' : 'transparent',
+                    color: on ? '#0C0A09' : '#A8A59D',
                     fontFamily: "'Geist Variable','Geist',sans-serif",
                     fontWeight: '500',
                     fontSize: '14px',
@@ -201,7 +201,7 @@ export function MediaPanel() {
                         borderRadius: '12px',
                         border: 'none',
                         background: on ? '#1C1C1F' : 'transparent',
-                        color: on ? '#EDEBE6' : '#A8A59D',
+                        color: on ? '#F2EBDF' : '#A8A59D',
                         fontFamily: "'Geist Variable','Geist',sans-serif",
                         fontSize: '15px',
                         fontWeight: '500',
@@ -250,7 +250,7 @@ export function MediaPanel() {
                   boxSizing: 'border-box',
                 }}
               >
-                <span style={{ fontFamily: MONO, fontSize: '12px', color: '#FFD60A' }}>{s.n}</span>
+                <span style={{ fontFamily: MONO, fontSize: '12px', color: '#F0B54A' }}>{s.n}</span>
                 <span
                   style={{
                     fontWeight: '500',

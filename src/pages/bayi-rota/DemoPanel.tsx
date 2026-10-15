@@ -190,8 +190,8 @@ export function DemoPanel({ day, sel, onPickDay, onPickPin }: Props) {
             height: '16px',
             margin: '-8px 0 0 -8px',
             borderRadius: '3px',
-            background: '#FFD60A',
-            boxShadow: '0 0 0 3px #121212,0 0 0 5px #FFD60A',
+            background: '#F0B54A',
+            boxShadow: '0 0 0 3px #121212,0 0 0 5px #F0B54A',
           }}
         />
         <span style={{ position: 'absolute', left: '12px', bottom: '10px', ...smallLabel }}>
@@ -236,9 +236,9 @@ export function DemoPanel({ day, sel, onPickDay, onPickPin }: Props) {
                   minWidth: '44px',
                   padding: '0 10px',
                   borderRadius: '10px',
-                  border: `1px solid ${on ? '#FFD60A' : '#2E2E2E'}`,
-                  background: on ? '#FFD60A' : 'transparent',
-                  color: on ? '#0A0A0A' : '#D4D4D4',
+                  border: `1px solid ${on ? '#F0B54A' : '#2E2E2E'}`,
+                  background: on ? '#F0B54A' : 'transparent',
+                  color: on ? '#0C0A09' : '#D4D4D4',
                   fontFamily: "'Geist Variable','Geist',sans-serif",
                   fontWeight: '600',
                   fontSize: '13px',
@@ -381,7 +381,7 @@ function DayLayer({ d, sel, onPickPin }: { d: number; sel: number; onPickPin: (i
               borderRadius: '99px',
               border: `2px solid ${k === sel ? '#FFFFFF' : '#121212'}`,
               background: own ? DAY_COLORS[d] : '#3A3A3A',
-              color: '#0A0A0A',
+              color: '#0C0A09',
               padding: '0',
               cursor: 'pointer',
               fontFamily: MONO,

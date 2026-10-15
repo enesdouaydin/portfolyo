@@ -25,7 +25,7 @@ export function startScrollScene({ canvas, section, factory, options, onStage, o
   renderer.toneMappingExposure = 1.05;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  renderer.setClearColor(0x0a0a0a, 1);
+  renderer.setClearColor(0x0c0a09, 1);
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(options.fov, 1, options.near, options.far);

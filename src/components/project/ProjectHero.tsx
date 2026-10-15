@@ -23,7 +23,7 @@ interface Props {
 }
 
 const DEFAULT_SCRIM =
-  'linear-gradient(180deg,rgba(10,10,10,.9) 0%,rgba(10,10,10,.4) 24%,rgba(10,10,10,0) 42%,rgba(10,10,10,0) 66%,rgba(10,10,10,.88) 100%)';
+  'linear-gradient(180deg,rgba(12, 10, 9,.9) 0%,rgba(12, 10, 9,.4) 24%,rgba(12, 10, 9,0) 42%,rgba(12, 10, 9,0) 66%,rgba(12, 10, 9,.88) 100%)';
 
 /** Proje sayfalarının 3D hero'su: sahne + degrade + başlık/özet bloğu + sahneye bağlı alt satır. */
 export function ProjectHero({

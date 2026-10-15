@@ -46,7 +46,7 @@ export function ResultSection() {
             style={{
               fontFamily: "'Geist Mono Variable','Geist Mono',ui-monospace,monospace",
               fontSize: '12px',
-              color: '#FFD60A',
+              color: '#F0B54A',
               letterSpacing: '.06em',
             }}
           >
@@ -104,7 +104,7 @@ export function ResultSection() {
               lineHeight: '1',
             }}
           >
-            <span style={{ color: '#FFD60A' }}>%</span>
+            <span style={{ color: '#F0B54A' }}>%</span>
             50
           </dd>
         </div>

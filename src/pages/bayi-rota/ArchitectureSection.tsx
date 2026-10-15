@@ -24,7 +24,7 @@ const ROWS: readonly Row[] = [
 
 export function ArchitectureSection() {
   return (
-    <section aria-label="Mimari" style={{ background: '#FFD60A', color: '#0A0A0A' }}>
+    <section aria-label="Mimari" style={{ background: '#F0B54A', color: '#0C0A09' }}>
       <div
         style={{
           maxWidth: '1360px',
@@ -54,7 +54,7 @@ export function ArchitectureSection() {
             güncel tutuyor. Hepsi Docker konteynerlerinde.
           </p>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid #0A0A0A' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid #0C0A09' }}>
           {ROWS.map((r) => (
             <div
               key={r.label}
@@ -63,7 +63,7 @@ export function ArchitectureSection() {
                 flexWrap: 'wrap',
                 gap: '8px 32px',
                 padding: '24px 0',
-                borderBottom: '1px solid rgba(10,10,10,.22)',
+                borderBottom: '1px solid rgba(12, 10, 9,.22)',
                 alignItems: 'baseline',
               }}
             >
@@ -72,7 +72,7 @@ export function ArchitectureSection() {
                   flex: '0 0 160px',
                   fontFamily: MONO,
                   fontSize: '12px',
-                  color: r.strongLabel ? '#0A0A0A' : '#4A4843',
+                  color: r.strongLabel ? '#0C0A09' : '#4A4843',
                   letterSpacing: '.06em',
                 }}
               >

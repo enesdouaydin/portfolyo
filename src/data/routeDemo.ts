@@ -8,7 +8,7 @@ export const DEMO_ROUTES: ReadonlyArray<{
 }> = [
   {
     day: 'Pzt',
-    color: '#FFD60A',
+    color: '#F0B54A',
     stops: [
       ['47.62', '27.58'],
       ['42.21', '28.35'],

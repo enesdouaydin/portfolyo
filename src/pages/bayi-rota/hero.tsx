@@ -48,7 +48,7 @@ export function BayiRotaHeroBottom({ visited, noScroll }: { visited: number; noS
                 flex: '1',
                 height: '3px',
                 borderRadius: '3px',
-                background: i < visited ? '#FFD60A' : '#2A2A2E',
+                background: i < visited ? '#F0B54A' : '#2A2A2E',
               }}
             />
           ))}
@@ -67,7 +67,7 @@ export function BayiRotaHeroBottom({ visited, noScroll }: { visited: number; noS
           <HeroStat
             value={
               <>
-                <span style={{ color: '#FFD60A' }}>%</span>50
+                <span style={{ color: '#F0B54A' }}>%</span>50
               </>
             }
             label="daha kısa rota"

@@ -16,7 +16,7 @@ import { GUTTER, MONO } from '../../styles/type';
 const VERDICTS = [
   ['%12 pahalı', '#C9C6BE', '#3A3A40'],
   ['Piyasa değerinde', '#C9C6BE', '#3A3A40'],
-  ['%12 uygun · bulundu', '#FFD60A', '#FFD60A'],
+  ['%12 uygun · bulundu', '#F0B54A', '#F0B54A'],
 ] as const;
 
 const PHASES = [
@@ -58,7 +58,7 @@ function HeroBottom({ stage, noScroll }: { stage: number; noScroll: boolean }) {
               style={{
                 minWidth: '170px',
                 border: `1px solid ${h.bd}`,
-                background: 'rgba(10,10,10,.72)',
+                background: 'rgba(12, 10, 9,.72)',
                 borderRadius: '14px',
                 padding: '14px 16px',
                 display: 'flex',

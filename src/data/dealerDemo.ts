@@ -5,7 +5,7 @@
 
 export const DAY_NAMES = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'] as const;
 export const DAY_SHORT = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'] as const;
-export const DAY_COLORS = ['#FFD60A', '#F2F0EA', '#5CC8FF', '#FF7AB6', '#7BE38A', '#B79CFF'] as const;
+export const DAY_COLORS = ['#F0B54A', '#F2F0EA', '#5CC8FF', '#FF7AB6', '#7BE38A', '#B79CFF'] as const;
 
 export interface DemoPoint {
   x: number;

@@ -41,9 +41,9 @@ function HeroBottom({ stage, noScroll }: { stage: number; noScroll: boolean }) {
     const done = i < act;
     return {
       label: lb,
-      border: on ? '#FFD60A' : done ? '#6A6862' : '#2F2F34',
-      background: on ? 'rgba(255,214,10,.14)' : 'rgba(10,10,10,.6)',
-      color: on ? '#EDEBE6' : done ? '#C9C6BE' : '#8A877F',
+      border: on ? '#F0B54A' : done ? '#6A6862' : '#2F2F34',
+      background: on ? 'rgba(240, 181, 74,.14)' : 'rgba(12, 10, 9,.6)',
+      color: on ? '#F2EBDF' : done ? '#C9C6BE' : '#8A877F',
     };
   });
   return (
@@ -56,8 +56,8 @@ function HeroBottom({ stage, noScroll }: { stage: number; noScroll: boolean }) {
             fontSize: 'clamp(18px,1.8vw,24px)',
             lineHeight: '1.4',
             letterSpacing: '-0.015em',
-            color: '#EDEBE6',
-            background: 'rgba(10,10,10,.6)',
+            color: '#F2EBDF',
+            background: 'rgba(12, 10, 9,.6)',
             padding: '4px 0',
           }}
         >

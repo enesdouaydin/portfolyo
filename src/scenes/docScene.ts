@@ -10,7 +10,7 @@ export const docStageOptions: StageOptions = { ...projectStageOptions, loop: 24 
 
 type Ctx2D = CanvasRenderingContext2D;
 
-const Y = 0xffd60a;
+const Y = 0xf0b54a;
 const HEADS = ['Proje özeti', 'Amaç ve hedefler', 'Yöntem', 'Takvim', 'Bütçe', 'Ekip'] as const;
 const QUESTIONS = [
   'Projenin amacı nedir?',
@@ -19,7 +19,7 @@ const QUESTIONS = [
   'Beklenen çıktılar neler?',
   'Riskler ve önlemler?',
 ] as const;
-const CLUSTER_COLORS = [0xffd60a, 0xf2efe8, 0xb9b5aa, 0xffe066, 0xd6d3cb, 0xffc300];
+const CLUSTER_COLORS = [0xf0b54a, 0xf2efe8, 0xb9b5aa, 0xf5cf8c, 0xd6d3cb, 0xd9952b];
 const PTS_PER = 36;
 /** Aşama sınırları (p): arşiv · VLM okuma · Qdrant · yeni form · soru soru doldurma · kontrol · düzeltme. */
 const STAGE_AT = [0.08, 0.24, 0.4, 0.52, 0.78, 0.9];
@@ -86,7 +86,7 @@ function bezier(out: T.Vector3, a: T.Vector3, c: T.Vector3, b: T.Vector3, u: num
 
 export function createDocScene(ctx: SceneContext): SceneController {
   const { scene, camera: cam } = ctx;
-  scene.fog = new T.Fog(0x0a0a0a, 7, 16);
+  scene.fog = new T.Fog(0x0c0a09, 7, 16);
   const key = mkLights(scene, 5);
   key.intensity = 1.3;
   const dark = new T.MeshStandardMaterial({
@@ -138,7 +138,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
     const { c, t, x } = canvasTex(512, 160);
     const paint = () => {
       x.clearRect(0, 0, 512, 160);
-      x.fillStyle = 'rgba(10,10,10,0.88)';
+      x.fillStyle = 'rgba(12, 10, 9,0.88)';
       rr(x, 8, 8, 496, 144, 20);
       x.fill();
       x.strokeStyle = '#3A3A3A';
@@ -183,7 +183,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
     const x = sheetTex.x;
     x.fillStyle = '#F7F5EF';
     x.fillRect(0, 0, 500, 680);
-    x.fillStyle = '#0A0A0A';
+    x.fillStyle = '#0C0A09';
     x.font = '700 30px "Geist Variable", Geist, Arial, sans-serif';
     x.fillText('PROJE BAŞVURU FORMU', 30, 50);
     x.fillStyle = '#E3E0D8';
@@ -191,7 +191,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
     const rnd = mulberry32(7);
     HEADS.forEach((h, i) => {
       const y = 70 + i * 98;
-      x.fillStyle = '#0A0A0A';
+      x.fillStyle = '#0C0A09';
       x.font = '600 22px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText(`${i + 1}. ${h}`, 30, y + 28);
       for (let k = 0; k < 3; k++) {
@@ -233,7 +233,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
   const vlm = new T.Group();
   vlm.position.copy(RING);
   scene.add(vlm);
-  const ringMat = new T.MeshStandardMaterial({ color: Y, emissive: 0xffc300, emissiveIntensity: 0.9 });
+  const ringMat = new T.MeshStandardMaterial({ color: Y, emissive: 0xd9952b, emissiveIntensity: 0.9 });
   vlm.add(new T.Mesh(new T.TorusGeometry(0.55, 0.018, 12, 80), ringMat));
   const lensFill = new T.Mesh(new T.CircleGeometry(0.54, 48), additive(Y, 0.035));
   lensFill.position.z = -0.01;
@@ -251,14 +251,14 @@ export function createDocScene(ctx: SceneContext): SceneController {
     const { c, t, x } = canvasTex(300, 80);
     const paint = () => {
       x.clearRect(0, 0, 300, 80);
-      x.fillStyle = 'rgba(10,10,10,0.94)';
+      x.fillStyle = 'rgba(12, 10, 9,0.94)';
       rr(x, 4, 4, 292, 72, 14);
       x.fill();
-      x.strokeStyle = '#FFD60A';
+      x.strokeStyle = '#F0B54A';
       x.lineWidth = 3;
       rr(x, 4, 4, 292, 72, 14);
       x.stroke();
-      x.fillStyle = '#FFD60A';
+      x.fillStyle = '#F0B54A';
       x.font = '400 20px "Geist Mono Variable", "Geist Mono", monospace';
       x.fillText(String(i + 1).padStart(2, '0'), 20, 46);
       x.fillStyle = '#F2F0EA';
@@ -293,7 +293,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
   const db = new T.Group();
   db.position.set(X_DB, 0, 0);
   scene.add(db);
-  const dbGlow = new T.MeshStandardMaterial({ color: Y, emissive: 0xffc300, emissiveIntensity: 0.25 });
+  const dbGlow = new T.MeshStandardMaterial({ color: Y, emissive: 0xd9952b, emissiveIntensity: 0.25 });
   mk(new T.CylinderGeometry(0.52, 0.56, 0.06, 40), dark, db, 0, 0.03, 0);
   [0.22, 0.46, 0.7].forEach((yy) => {
     mk(new T.CylinderGeometry(0.34, 0.34, 0.2, 40), darkS, db, 0, yy + 0.08, 0);
@@ -344,7 +344,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
   cloud.add(pts);
   const shell = new T.Mesh(
     new T.IcosahedronGeometry(0.52, 1),
-    new T.MeshBasicMaterial({ color: 0xffe066, wireframe: true, transparent: true, opacity: 0 }),
+    new T.MeshBasicMaterial({ color: 0xf5cf8c, wireframe: true, transparent: true, opacity: 0 }),
   );
   cloud.add(shell);
   const dbLight = new T.PointLight(Y, 0, 2.6);
@@ -402,7 +402,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
     const x = formTex.x;
     x.fillStyle = '#F7F5EF';
     x.fillRect(0, 0, 600, 840);
-    x.fillStyle = '#0A0A0A';
+    x.fillStyle = '#0C0A09';
     x.font = '700 28px "Geist Variable", Geist, Arial, sans-serif';
     x.fillText('PROJE BAŞVURU FORMU', 36, 52);
     x.fillStyle = '#6A6862';
@@ -431,7 +431,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
       const f = s.q[i];
       const act = s.active === i;
       const edited = s.edit > 0 && i === 2;
-      x.fillStyle = '#0A0A0A';
+      x.fillStyle = '#0C0A09';
       x.font = '600 21px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText(`S${i + 1}. ${q}`, 36, y + 20);
       if (f > 0) {
@@ -454,13 +454,13 @@ export function createDocScene(ctx: SceneContext): SceneController {
         x.fillStyle = '#2A2A2A';
         x.fillRect(54, y + 54 + k * 20, widths[k] * lf, 9);
         if (act && lf < 1) {
-          x.fillStyle = '#FFD60A';
+          x.fillStyle = '#F0B54A';
           x.fillRect(54 + widths[k] * lf, y + 50 + k * 20, 8, 17);
         }
       }
       if (edited) {
         // düzeltilen paragraf: ilk satır yeniden yazılır (sarı vurgu), sona eklenen yeni satır
-        x.fillStyle = 'rgba(255,214,10,0.55)';
+        x.fillStyle = 'rgba(240, 181, 74,0.55)';
         x.fillRect(54, y + 49, 470 * clamp01(s.edit * 1.4), 18);
         x.fillStyle = '#2A2A2A';
         x.fillRect(54, y + 54, 470, 9);
@@ -468,11 +468,11 @@ export function createDocScene(ctx: SceneContext): SceneController {
         x.fillRect(54, y + 94, 200 * clamp01(s.edit * 2 - 0.6), 9);
       }
       if (i < s.checks) {
-        x.fillStyle = '#FFD60A';
+        x.fillStyle = '#F0B54A';
         x.beginPath();
         x.arc(542, y + 56, 13, 0, Math.PI * 2);
         x.fill();
-        x.strokeStyle = '#0A0A0A';
+        x.strokeStyle = '#0C0A09';
         x.lineWidth = 3;
         x.beginPath();
         x.moveTo(535, y + 56);
@@ -506,14 +506,14 @@ export function createDocScene(ctx: SceneContext): SceneController {
     x.fillStyle = '#F7F5EF';
     rr(x, 28, 66, 500, 64, 14);
     x.fill();
-    x.fillStyle = '#0A0A0A';
+    x.fillStyle = '#0C0A09';
     x.font = '400 25px "Geist Variable", Geist, Arial, sans-serif';
     x.fillText(AGENT_TEXT.slice(0, typed) + (typed < AGENT_TEXT.length ? '|' : ''), 46, 108);
-    x.fillStyle = '#FFD60A';
+    x.fillStyle = '#F0B54A';
     x.beginPath();
     x.arc(580, 98, 32, 0, Math.PI * 2);
     x.fill();
-    x.strokeStyle = '#0A0A0A';
+    x.strokeStyle = '#0C0A09';
     x.lineWidth = 5;
     x.beginPath();
     x.moveTo(566, 98);
@@ -522,7 +522,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
     x.lineTo(596, 98);
     x.lineTo(584, 110);
     x.stroke();
-    x.fillStyle = done ? '#FFD60A' : '#6A6A6A';
+    x.fillStyle = done ? '#F0B54A' : '#6A6A6A';
     x.font = '400 21px "Geist Mono Variable", "Geist Mono", monospace';
     x.fillText(done ? 'S3 güncellendi ✓' : 'soru bazında uygulanır…', 32, 168);
     agentTex.t.needsUpdate = true;
@@ -547,7 +547,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
       new T.IcosahedronGeometry(0.11, 0),
       new T.MeshStandardMaterial({
         color: Y,
-        emissive: 0xffc300,
+        emissive: 0xd9952b,
         emissiveIntensity: 1.2,
         roughness: 0.3,
         flatShading: true,
@@ -557,7 +557,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
   agentCore.add(
     new T.Mesh(
       new T.IcosahedronGeometry(0.2, 1),
-      new T.MeshBasicMaterial({ color: 0xffe066, wireframe: true, transparent: true, opacity: 0.35 }),
+      new T.MeshBasicMaterial({ color: 0xf5cf8c, wireframe: true, transparent: true, opacity: 0.35 }),
     ),
   );
   agentCore.add(new T.Mesh(new T.SphereGeometry(0.3, 20, 14), additive(Y, 0.06)));
@@ -573,7 +573,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
     scene.add(l);
     const pulse = new T.Mesh(
       new T.SphereGeometry(0.028, 12, 8),
-      new T.MeshBasicMaterial({ color: 0xffe066, transparent: true, opacity: 0 }),
+      new T.MeshBasicMaterial({ color: 0xf5cf8c, transparent: true, opacity: 0 }),
     );
     scene.add(pulse);
     return { arr, g, l, pulse };

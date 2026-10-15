@@ -16,7 +16,7 @@ import { MediaPanel } from './MediaPanel';
 import { ResultSection } from './ResultSection';
 
 const SCRIM =
-  'linear-gradient(180deg,rgba(10,10,10,.9) 0%,rgba(10,10,10,.45) 26%,rgba(10,10,10,0) 46%,rgba(10,10,10,0) 70%,rgba(10,10,10,.85) 100%)';
+  'linear-gradient(180deg,rgba(12, 10, 9,.9) 0%,rgba(12, 10, 9,.45) 26%,rgba(12, 10, 9,0) 46%,rgba(12, 10, 9,0) 70%,rgba(12, 10, 9,.85) 100%)';
 
 export default function BayiRota() {
   usePageTitle('Bayi Rota Optimizasyonu — Vaka çalışması');

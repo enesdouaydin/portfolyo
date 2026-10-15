@@ -53,7 +53,7 @@ export function HeroStage({ id, scene, options, scrollHeight, label, children }:
       style={{
         position: 'relative',
         height: noScroll ? 'min(100vh,920px)' : scrollHeight,
-        background: '#0A0A0A',
+        background: '#0C0A09',
         borderBottom: '1px solid #1F1F1F',
       }}
     >

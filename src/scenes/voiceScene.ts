@@ -7,7 +7,7 @@ export const voiceStageOptions: StageOptions = { ...projectStageOptions, loop: 2
 
 export function createVoiceScene(ctx: SceneContext): SceneController {
   const { scene, camera: cam } = ctx;
-  scene.fog = new T.Fog(0x0a0a0a, 7, 16);
+  scene.fog = new T.Fog(0x0c0a09, 7, 16);
   const key = mkLights(scene, 5);
   key.intensity = 1.3;
   const clay = new T.MeshStandardMaterial({ color: 0xd9d4c9, roughness: 0.5, flatShading: true });
@@ -19,7 +19,7 @@ export function createVoiceScene(ctx: SceneContext): SceneController {
     flatShading: true,
   });
   const darkS = new T.MeshStandardMaterial({ color: 0x2a2a30, roughness: 0.5, metalness: 0.35 });
-  const trim = new T.MeshStandardMaterial({ color: 0xffd60a, emissive: 0xffc300, emissiveIntensity: 0.9 });
+  const trim = new T.MeshStandardMaterial({ color: 0xf0b54a, emissive: 0xd9952b, emissiveIntensity: 0.9 });
 
   const floor = new T.Mesh(
     new T.CircleGeometry(12, 64),
@@ -60,7 +60,7 @@ export function createVoiceScene(ctx: SceneContext): SceneController {
   helm.scale.set(1, 1.08, 1.06);
   mk(
     new T.BoxGeometry(0.2, 0.042, 0.07),
-    new T.MeshBasicMaterial({ color: 0xffe066 }),
+    new T.MeshBasicMaterial({ color: 0xf5cf8c }),
     head,
     0,
     0.012,
@@ -70,7 +70,7 @@ export function createVoiceScene(ctx: SceneContext): SceneController {
   mk(new T.BoxGeometry(0.022, 0.09, 0.18), dark, head, 0, 0.13, -0.01);
   const phoneScreen = new T.MeshStandardMaterial({
     color: 0x111111,
-    emissive: 0xffd60a,
+    emissive: 0xf0b54a,
     emissiveIntensity: 0.3,
   });
   const arms: Record<number, { sh: T.Group; el: T.Group }> = {};
@@ -116,8 +116,8 @@ export function createVoiceScene(ctx: SceneContext): SceneController {
   agent.position.set(1.9, 1.45, 0);
   scene.add(agent);
   const coreMat = new T.MeshStandardMaterial({
-    color: 0xffd60a,
-    emissive: 0xffc300,
+    color: 0xf0b54a,
+    emissive: 0xd9952b,
     emissiveIntensity: 1.2,
     roughness: 0.3,
     flatShading: true,
@@ -125,13 +125,13 @@ export function createVoiceScene(ctx: SceneContext): SceneController {
   const core = mk(new T.IcosahedronGeometry(0.24, 0), coreMat, agent, 0, 0, 0);
   const shell = new T.Mesh(
     new T.IcosahedronGeometry(0.44, 1),
-    new T.MeshBasicMaterial({ color: 0xffe066, wireframe: true, transparent: true, opacity: 0.35 }),
+    new T.MeshBasicMaterial({ color: 0xf5cf8c, wireframe: true, transparent: true, opacity: 0.35 }),
   );
   agent.add(shell);
   const halo = new T.Mesh(
     new T.SphereGeometry(0.62, 24, 16),
     new T.MeshBasicMaterial({
-      color: 0xffd60a,
+      color: 0xf0b54a,
       transparent: true,
       opacity: 0.06,
       blending: T.AdditiveBlending,
@@ -139,7 +139,7 @@ export function createVoiceScene(ctx: SceneContext): SceneController {
     }),
   );
   agent.add(halo);
-  const aLight = new T.PointLight(0xffd34d, 1.4, 4);
+  const aLight = new T.PointLight(0xf5c372, 1.4, 4);
   agent.add(aLight);
   mk(new T.CylinderGeometry(0.32, 0.42, 0.12, 24), dark, scene, 1.9, 0.06, 0);
   const sats: { m: T.Mesh; mat: T.MeshStandardMaterial; r: number; sp: number; ph: number; tilt: number }[] =
@@ -147,7 +147,7 @@ export function createVoiceScene(ctx: SceneContext): SceneController {
   for (let i = 0; i < 10; i++) {
     const sm = new T.MeshStandardMaterial({
       color: 0x8a877f,
-      emissive: 0xffc300,
+      emissive: 0xd9952b,
       emissiveIntensity: 0,
       roughness: 0.4,
     });
@@ -166,15 +166,15 @@ export function createVoiceScene(ctx: SceneContext): SceneController {
   lg.setAttribute('position', new T.BufferAttribute(linePos, 3));
   const lines = new T.LineSegments(
     lg,
-    new T.LineBasicMaterial({ color: 0xffe066, transparent: true, opacity: 0.25 }),
+    new T.LineBasicMaterial({ color: 0xf5cf8c, transparent: true, opacity: 0.25 }),
   );
   agent.add(lines);
 
   // voice bars between caller and agent
   const NB = 34;
   const bars: T.Mesh[] = [];
-  const barMat = new T.MeshBasicMaterial({ color: 0xffd60a });
-  const barMat2 = new T.MeshBasicMaterial({ color: 0xedebe6 });
+  const barMat = new T.MeshBasicMaterial({ color: 0xf0b54a });
+  const barMat2 = new T.MeshBasicMaterial({ color: 0xf2ebdf });
   for (let b = 0; b < NB; b++) {
     const x = -1.15 + (b / (NB - 1)) * 2.55;
     const bar = new T.Mesh(new T.BoxGeometry(0.03, 1, 0.03), barMat2);

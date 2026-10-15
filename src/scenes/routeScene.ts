@@ -7,7 +7,7 @@ export const routeStageOptions: StageOptions = { ...projectStageOptions, loop: 1
 
 export function createRouteScene(ctx: SceneContext): SceneController {
   const { scene, camera: cam } = ctx;
-  scene.fog = new T.Fog(0x0a0a0a, 10, 26);
+  scene.fog = new T.Fog(0x0c0a09, 10, 26);
   const keyL = mkLights(scene, 14);
   keyL.intensity = 1.15;
   let seed = 7;
@@ -21,8 +21,8 @@ export function createRouteScene(ctx: SceneContext): SceneController {
   const dark = new T.MeshStandardMaterial({ color: 0x26262b, roughness: 0.6, metalness: 0.3 });
   const sage = new T.MeshStandardMaterial({ color: 0x6f7d68, roughness: 0.8, flatShading: true });
   const orange = new T.MeshStandardMaterial({
-    color: 0xffd60a,
-    emissive: 0xffc300,
+    color: 0xf0b54a,
+    emissive: 0xd9952b,
     emissiveIntensity: 0.8,
     roughness: 0.4,
   });
@@ -89,7 +89,7 @@ export function createRouteScene(ctx: SceneContext): SceneController {
   }
   strip(1.6, 0.006, new T.MeshStandardMaterial({ color: 0x18181b, roughness: 0.95, side: T.DoubleSide }));
   strip(1.25, 0.012, new T.MeshStandardMaterial({ color: 0x2c2c31, roughness: 0.8, side: T.DoubleSide }));
-  const trail = strip(0.2, 0.022, new T.MeshBasicMaterial({ color: 0xffd60a, side: T.DoubleSide }));
+  const trail = strip(0.2, 0.022, new T.MeshBasicMaterial({ color: 0xf0b54a, side: T.DoubleSide }));
   trail.geometry.setDrawRange(0, 0);
   const dashMat = new T.MeshBasicMaterial({ color: 0x77736b });
   for (let dd = 0; dd < M; dd += 9) {
@@ -167,7 +167,7 @@ export function createRouteScene(ctx: SceneContext): SceneController {
     mk(new T.SphereGeometry(0.17, 16, 12), pinMat, pin, 0, 0.12, 0);
     const cone = mk(new T.ConeGeometry(0.12, 0.3, 12), pinMat, pin, 0, -0.1, 0);
     cone.rotation.x = Math.PI;
-    const ringM = new T.MeshBasicMaterial({ color: 0xffd60a, transparent: true, opacity: 0 });
+    const ringM = new T.MeshBasicMaterial({ color: 0xf0b54a, transparent: true, opacity: 0 });
     const ring = new T.Mesh(new T.RingGeometry(0.55, 0.62, 48), ringM);
     ring.rotation.x = -Math.PI / 2;
     ring.position.y = 0.02;
@@ -250,8 +250,8 @@ export function createRouteScene(ctx: SceneContext): SceneController {
         if (on !== s.on) {
           s.on = on;
           s.t = t;
-          s.mat.color.set(on ? 0xffd60a : 0x5a5852);
-          s.mat.emissive.set(on ? 0xffc300 : 0x000000);
+          s.mat.color.set(on ? 0xf0b54a : 0x5a5852);
+          s.mat.emissive.set(on ? 0xd9952b : 0x000000);
           s.mat.emissiveIntensity = on ? 0.9 : 0;
         }
         const k = on ? Math.min(1, (t - s.t) * 3) : 0;

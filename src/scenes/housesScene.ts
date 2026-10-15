@@ -19,7 +19,7 @@ interface HouseOpts {
 
 export function createHousesScene(ctx: SceneContext): SceneController {
   const { scene, camera: cam } = ctx;
-  scene.fog = new T.Fog(0x0a0a0a, 11, 26);
+  scene.fog = new T.Fog(0x0c0a09, 11, 26);
   const key = mkLights(scene, 10);
   key.intensity = 1.2;
   const dark = new T.MeshStandardMaterial({
@@ -34,7 +34,7 @@ export function createHousesScene(ctx: SceneContext): SceneController {
 
   const ground = new T.Mesh(
     new T.PlaneGeometry(80, 80),
-    new T.MeshStandardMaterial({ color: 0x0a0a0a, roughness: 1 }),
+    new T.MeshStandardMaterial({ color: 0x0c0a09, roughness: 1 }),
   );
   ground.rotation.x = -Math.PI / 2;
   ground.receiveShadow = true;
@@ -123,8 +123,8 @@ export function createHousesScene(ctx: SceneContext): SceneController {
     mk(
       new T.BoxGeometry(0.5, 0.26, 0.03),
       new T.MeshStandardMaterial({
-        color: opts.good ? 0xffd60a : 0xd9d4c9,
-        emissive: opts.good ? 0xffc300 : 0,
+        color: opts.good ? 0xf0b54a : 0xd9d4c9,
+        emissive: opts.good ? 0xd9952b : 0,
         emissiveIntensity: opts.good ? 0.4 : 0,
       }),
       sign,
@@ -150,8 +150,8 @@ export function createHousesScene(ctx: SceneContext): SceneController {
     function draw() {
       const x = c.getContext('2d')!;
       x.clearRect(0, 0, 768, 300);
-      x.fillStyle = 'rgba(10,10,10,0.9)';
-      x.strokeStyle = opts.good ? '#FFD60A' : '#3A3A40';
+      x.fillStyle = 'rgba(12, 10, 9,0.9)';
+      x.strokeStyle = opts.good ? '#F0B54A' : '#3A3A40';
       x.lineWidth = 4;
       x.beginPath();
       x.moveTo(36, 10);
@@ -171,13 +171,13 @@ export function createHousesScene(ctx: SceneContext): SceneController {
       x.font = '500 30px "Geist Mono Variable", "Geist Mono", monospace';
       x.fillText('İLAN', 44, 72);
       x.fillText('MODEL TAHMİNİ', 404, 72);
-      x.fillStyle = '#EDEBE6';
+      x.fillStyle = '#F2EBDF';
       x.font = '500 52px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText(opts.ask, 44, 146);
       x.fillText(opts.est, 404, 146);
       x.fillStyle = '#2A2A2E';
       x.fillRect(380, 40, 2, 130);
-      x.fillStyle = opts.good ? '#FFD60A' : opts.over ? '#C9C6BE' : '#A8A59D';
+      x.fillStyle = opts.good ? '#F0B54A' : opts.over ? '#C9C6BE' : '#A8A59D';
       x.font = '600 40px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText(opts.verdict, 44, 238);
       tex.needsUpdate = true;

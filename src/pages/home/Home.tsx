@@ -3,6 +3,7 @@ import { ContactPill, SiteHeader } from '../../components/SiteHeader';
 import { HeroStage } from '../../components/HeroStage';
 import { usePageTitle } from '../../hooks/usePageTitle';
 import { useReveal } from '../../hooks/useReveal';
+import { useMagnetic } from '../../hooks/useMagnetic';
 import { createHeroScene, heroStageOptions } from '../../scenes/heroScene';
 import { HeroOverlay } from './HeroOverlay';
 import { Ticker } from './Ticker';
@@ -25,6 +26,7 @@ const HERO_LABEL =
 export default function Home() {
   usePageTitle('Enes Dou Aydın — Portfolyo');
   useReveal();
+  useMagnetic();
   return (
     <div className="home on">
       <Intro />

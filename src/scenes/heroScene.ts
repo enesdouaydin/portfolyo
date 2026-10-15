@@ -32,8 +32,8 @@ interface Label {
 
 export function createHeroScene({ scene, camera: cam, canvas: cv }: SceneContext): SceneController {
   // --- ortam ---------------------------------------------------------------------------------
-  scene.fog = new T.Fog(0x0a0a0a, 6.5, 13);
-  scene.add(new T.HemisphereLight(0xf2efe8, 0x0a0a0a, 0.45));
+  scene.fog = new T.Fog(0x0c0a09, 6.5, 13);
+  scene.add(new T.HemisphereLight(0xf2efe8, 0x0c0a09, 0.45));
   const fill = new T.DirectionalLight(0xfff4ea, 0.9);
   fill.position.set(0.6, 1.4, 5);
   scene.add(fill);
@@ -47,7 +47,7 @@ export function createHeroScene({ scene, camera: cam, canvas: cv }: SceneContext
   const rim = new T.DirectionalLight(0x7d93ff, 1.1);
   rim.position.set(-3.5, 2.6, -3);
   scene.add(rim);
-  const rim2 = new T.DirectionalLight(0xffe08a, 0.5);
+  const rim2 = new T.DirectionalLight(0xf2d2a2, 0.5);
   rim2.position.set(3.5, 1.5, -2.5);
   scene.add(rim2);
 
@@ -59,7 +59,7 @@ export function createHeroScene({ scene, camera: cam, canvas: cv }: SceneContext
   floor.receiveShadow = true;
   scene.add(floor);
 
-  const ringMat = new T.MeshBasicMaterial({ color: 0xffd60a, transparent: true, opacity: 0.55 });
+  const ringMat = new T.MeshBasicMaterial({ color: 0xf0b54a, transparent: true, opacity: 0.55 });
   const ring = new T.Mesh(new T.RingGeometry(0.92, 0.935, 128), ringMat);
   const ring2 = new T.Mesh(
     new T.RingGeometry(1.7, 1.705, 128),
@@ -200,7 +200,7 @@ export function createHeroScene({ scene, camera: cam, canvas: cv }: SceneContext
     x.lineTo(x0 + r, y0 + h);
     x.arc(x0 + r, y0 + r, r, Math.PI / 2, Math.PI * 1.5);
     x.closePath();
-    x.fillStyle = 'rgba(10,10,10,0.86)';
+    x.fillStyle = 'rgba(12, 10, 9,0.86)';
     x.fill();
     x.lineWidth = 3;
     x.strokeStyle = ACCENT;
@@ -209,7 +209,7 @@ export function createHeroScene({ scene, camera: cam, canvas: cv }: SceneContext
     x.beginPath();
     x.arc(x0 + 42, y0 + 50, 8, 0, Math.PI * 2);
     x.fill();
-    x.fillStyle = '#EDEBE6';
+    x.fillStyle = '#F2EBDF';
     x.textBaseline = 'middle';
     x.fillText(text, x0 + 64, y0 + 53);
     L.tex.needsUpdate = true;
