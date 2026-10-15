@@ -1,8 +1,9 @@
 import * as T from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { GLTFLoader, type GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { PAIRS } from '../data/home';
 import { ACCENT } from '../theme';
 import { Choreography, MODEL_SCALE } from './hero/choreography';
+import { loadModel } from './hero/modelLoader';
 import { findRig, type Rig } from './hero/rig';
 import { createSaber } from './hero/saber';
 import type { SceneContext, SceneController, StageOptions } from './types';
@@ -119,29 +120,31 @@ export function createHeroScene({ scene, camera: cam, canvas: cv }: SceneContext
   let rig: Rig | null = null;
   let disposed = false;
 
-  new GLTFLoader().load(
-    MODEL_URL,
-    (gltf) => {
-      if (disposed) return;
-      gltf.scene.traverse((o) => {
-        const mesh = o as T.Mesh;
-        if (!mesh.isMesh) return;
-        mesh.castShadow = true;
-        mesh.receiveShadow = true;
-        if ((o as T.SkinnedMesh).isSkinnedMesh) o.frustumCulled = false;
-        const m = mesh.material as T.MeshStandardMaterial;
-        if (m && 'metalness' in m) {
-          m.metalness = Math.min(m.metalness, 0.3);
-          m.roughness = Math.max(m.roughness, 0.55);
-          m.needsUpdate = true;
-        }
-      });
-      rig = findRig(gltf.scene);
-      body.add(gltf.scene);
-    },
-    undefined,
-    (err) => console.warn('hero model failed to load', err),
-  );
+  const onModel = (gltf: GLTF) => {
+    if (disposed) return;
+    gltf.scene.traverse((o) => {
+      const mesh = o as T.Mesh;
+      if (!mesh.isMesh) return;
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      if ((o as T.SkinnedMesh).isSkinnedMesh) o.frustumCulled = false;
+      const m = mesh.material as T.MeshStandardMaterial;
+      if (m && 'metalness' in m) {
+        m.metalness = Math.min(m.metalness, 0.3);
+        m.roughness = Math.max(m.roughness, 0.55);
+        m.needsUpdate = true;
+      }
+    });
+    rig = findRig(gltf.scene);
+    body.add(gltf.scene);
+  };
+  const onModelError = (err: unknown) => console.warn('hero model failed to load', err);
+  // Önce indir (sıkıştırılmış kopya varsa onu aç, ilerlemeyi duyur), sonra çöz
+  loadModel(MODEL_URL)
+    .then((buf) => {
+      if (!disposed) new GLTFLoader().parse(buf, '', onModel, onModelError);
+    })
+    .catch(onModelError);
 
   // --- iz: yalnızca bıçağın ucu --------------------------------------------------------------
   const TN = 20;

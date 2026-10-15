@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import { GROUPS, PAIRS } from '../../data/home';
 import { SITE } from '../../data/site';
+import { HERO_MODEL_EVENT, type HeroModelProgress } from '../../scenes/hero/modelLoader';
 
 interface Props {
   /** Kılıcın iki yanında gösterilen teknoloji çiftinin sırası (sahne bunu üretir). */
@@ -29,6 +31,14 @@ const ArrowDown = () => (
 /** 3D sahnenin üstündeki metin katmanı: başlık, düğmeler ve kılıçtaki teknoloji sayacı. */
 export function HeroOverlay({ stage, noScroll }: Props) {
   const [left, right, group] = PAIRS[stage];
+  // 3D model inerken (yavaş ağda birkaç sn sürebilir) ipucu yerine ilerleme gösterilir
+  const [model, setModel] = useState<HeroModelProgress | null>(null);
+  useEffect(() => {
+    const on = (e: Event) => setModel((e as CustomEvent<HeroModelProgress>).detail);
+    window.addEventListener(HERO_MODEL_EVENT, on);
+    return () => window.removeEventListener(HERO_MODEL_EVENT, on);
+  }, []);
+  const loading = model !== null && !model.done;
   return (
     <>
       <div aria-hidden="true" className="hero-scrim" />
@@ -74,9 +84,15 @@ export function HeroOverlay({ stage, noScroll }: Props) {
               ))}
             </ol>
           </div>
-          <span className="hero-hint">
-            {noScroll ? 'Otomatik oynatılıyor' : 'Kaydır, dönsün'}
-            <ArrowDown />
+          <span className="hero-hint" aria-live="polite">
+            {loading ? (
+              `3D model yükleniyor${model.pct !== null ? ` · %${model.pct}` : ''}`
+            ) : (
+              <>
+                {noScroll ? 'Otomatik oynatılıyor' : 'Kaydır, dönsün'}
+                <ArrowDown />
+              </>
+            )}
           </span>
         </div>
       </div>
