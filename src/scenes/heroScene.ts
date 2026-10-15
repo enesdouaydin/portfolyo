@@ -20,6 +20,7 @@ export const heroStageOptions: StageOptions = {
   loop: 21, // çift başına ~1 sn (21 çift)
   progressAt: (cyc) => (cyc < 0.9 ? cyc / 0.9 : 1 - (cyc - 0.9) / 0.1),
   smooth: () => 0.075,
+  idleAutoplay: true, // kaydırmadan da teknolojiler (5 grup, 21 çift) kendiliğinden ilerler
 };
 
 const MODEL_URL = `${import.meta.env.BASE_URL}media/enes.glb`;

@@ -64,6 +64,14 @@ export function startScrollScene({ canvas, section, factory, options, onStage, o
   let ps = 0;
   let stage = 0;
   let noScroll = false;
+  // idleAutoplay: ilerleme `pv` kaydırma farklarını biriktirir, kaydırma durunca kendi kendine ilerler.
+  const IDLE_S = 1.2;
+  const END_HOLD_S = 0.8;
+  let pv = 0;
+  let prevScroll: number | null = null;
+  let lastScrollAt = -Infinity;
+  let autoDir = 1;
+  let endHold = 0;
   const t0 = performance.now();
   let last = t0;
   let raf = 0;
@@ -89,6 +97,35 @@ export function startScrollScene({ canvas, section, factory, options, onStage, o
       // Yapışkan kutu `top` kadar aşağıda duruyorsa (dar ekranda menünün altı) ilerleme o kadar erken başlar.
       const stuckTop = parseFloat(getComputedStyle(canvas.parentElement!).top) || 0;
       p = Math.min(1, Math.max(0, (stuckTop - rect.top) / span));
+      if (options.idleAutoplay) {
+        if (prevScroll === null) {
+          prevScroll = p;
+          pv = p;
+        }
+        const d = p - prevScroll;
+        prevScroll = p;
+        if (Math.abs(d) > 1e-4) lastScrollAt = t;
+        pv = Math.min(1, Math.max(0, pv + d));
+        if (!reduce && t - lastScrollAt > IDLE_S) {
+          if (autoDir === 1) {
+            pv += dt / (0.9 * options.loop);
+            if (pv >= 1) {
+              pv = 1;
+              autoDir = -1;
+              endHold = END_HOLD_S;
+            }
+          } else if (endHold > 0) {
+            endHold -= dt;
+          } else {
+            pv -= dt / (0.1 * options.loop);
+            if (pv <= 0) {
+              pv = 0;
+              autoDir = 1;
+            }
+          }
+        }
+        p = pv;
+      }
     }
     ps += (p - ps) * (reduce ? 1 : smooth(dt));
     k = 1 - Math.exp(-dt * 3.5);

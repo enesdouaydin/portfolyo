@@ -35,4 +35,9 @@ export interface StageOptions {
   progressAt?: (cycle: number) => number;
   /** Bir karedeki yumuşatma oranı. */
   smooth?: (dt: number) => number;
+  /**
+   * Kaydırma bırakılınca (ya da hiç kaydırılmadan) ilerleme kendi kendine sürsün: `loop` süresinde ileri,
+   * sonda kısa bekleyip hızlıca geri. Kaydırma ilerlemeyi yine taşır; geçişlerde atlama olmaz.
+   */
+  idleAutoplay?: boolean;
 }
