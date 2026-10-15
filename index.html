@@ -10,9 +10,104 @@
     />
     <meta name="theme-color" content="#0C0A09" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      /* Uygulama (JS) açılana kadar görünen yer tutucu ve açılamazsa gösterilen hata paneli */
+      html,
+      body {
+        background: #0c0a09;
+        color: #f2ebdf;
+      }
+      .boot {
+        box-sizing: border-box;
+        min-height: 100vh;
+        padding: 32px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 14px;
+        font: 15px/1.5 ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+        color: #a8a59d;
+      }
+      .boot strong {
+        font: 600 20px/1.3 system-ui, sans-serif;
+        color: #f2ebdf;
+      }
+      .boot pre {
+        margin: 0;
+        padding: 12px;
+        max-width: 100%;
+        overflow: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-size: 12px;
+        background: #1a1613;
+        border: 1px solid #2b241e;
+        border-radius: 10px;
+      }
+      .boot button {
+        align-self: flex-start;
+        padding: 12px 22px;
+        font: 600 15px system-ui, sans-serif;
+        color: #0c0a09;
+        background: #f0b54a;
+        border: 0;
+        border-radius: 999px;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><div class="boot">Yükleniyor…</div></div>
+    <noscript><div class="boot">Bu sayfa JavaScript gerektirir. Tarayıcınızda JavaScript'i açın.</div></noscript>
+    <script>
+      // Açılış bekçisi: uygulama 12 sn içinde açılmazsa siyah ekran yerine nedenini gösterir.
+      // (Eski sözdizimi bilerek: bu betik, ana paket çalışmasa bile çalışabilmeli.)
+      (function () {
+        var problems = [];
+        function note(text) {
+          if (problems.length < 12) problems.push(text);
+        }
+        window.addEventListener(
+          'error',
+          function (e) {
+            var t = e.target;
+            if (t && t !== window && (t.src || t.href)) note('Yüklenemedi: ' + (t.src || t.href));
+            else note('Hata: ' + (e.message || 'bilinmiyor') + (e.filename ? ' [' + e.filename.split('/').pop() + ':' + e.lineno + ']' : ''));
+          },
+          true,
+        );
+        window.addEventListener('unhandledrejection', function (e) {
+          var r = e.reason;
+          note('Söz hatası: ' + (r && r.message ? r.message : String(r)));
+        });
+        setTimeout(function () {
+          var root = document.getElementById('root');
+          // Uygulama açıldıysa `.boot` yer tutucusunu React çoktan silmiştir.
+          if (!root || !root.querySelector('.boot')) return;
+          var box = document.createElement('div');
+          box.className = 'boot';
+          var title = document.createElement('strong');
+          title.textContent = 'Sayfa açılamadı';
+          var hint = document.createElement('div');
+          hint.textContent = 'Bu ekranın görüntüsünü gönderin; sorunu bulmak için aşağıdaki bilgi gerekli.';
+          var pre = document.createElement('pre');
+          pre.textContent =
+            (problems.length ? problems.join('\n') : 'Hata kaydı yok (ana betik hiç çalışmamış ya da çok yavaş olabilir).') +
+            '\n\nçevrimiçi: ' + navigator.onLine +
+            '\ntarayıcı: ' + navigator.userAgent;
+          var btn = document.createElement('button');
+          btn.textContent = 'Tekrar dene';
+          btn.onclick = function () {
+            location.reload();
+          };
+          box.appendChild(title);
+          box.appendChild(hint);
+          box.appendChild(pre);
+          box.appendChild(btn);
+          root.innerHTML = '';
+          root.appendChild(box);
+        }, 12000);
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
