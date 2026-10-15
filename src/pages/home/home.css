@@ -63,6 +63,52 @@
   align-items: end;
   margin-bottom: clamp(40px, 5vw, 64px);
 }
+.sec-head {
+  position: relative;
+}
+.sec-head::after {
+  /* ekrana girince başlığın üstünden geçen kılıç darbesi */
+  content: '';
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  top: 46%;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, transparent, #fff 45%, var(--saber) 60%, transparent);
+  box-shadow:
+    0 0 12px var(--saber),
+    0 0 32px rgba(255, 59, 47, 0.7);
+  transform: rotate(-4deg) scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  pointer-events: none;
+}
+.js-reveal .sec-head.is-in::after {
+  animation: slash 0.9s var(--ease) 0.25s both;
+}
+@keyframes slash {
+  0% {
+    transform: rotate(-4deg) scaleX(0);
+    transform-origin: left;
+    opacity: 1;
+  }
+  55% {
+    transform: rotate(-4deg) scaleX(1);
+    transform-origin: left;
+    opacity: 1;
+  }
+  56% {
+    transform: rotate(-4deg) scaleX(1);
+    transform-origin: right;
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-4deg) scaleX(0);
+    transform-origin: right;
+    opacity: 0;
+  }
+}
 .sec-num {
   grid-row: span 2;
   align-self: start;
@@ -455,7 +501,11 @@
   color: var(--text);
   border-color: var(--line-strong);
   background: var(--surface-2);
-  transform: translateY(-4px);
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px);
+  transition:
+    border-color 0.3s ease,
+    transform 0.12s linear,
+    background 0.3s ease;
 }
 .card:hover::before {
   transform: scaleX(1);
@@ -912,6 +962,130 @@
   padding-top: 28px;
 }
 
+/* --- açılış ------------------------------------------------------------------------------- */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  cursor: pointer;
+  animation: intro-out 0.01s linear 1.65s forwards;
+}
+.intro-half {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  overflow: hidden;
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+}
+.intro-half--top {
+  top: 0;
+  align-items: flex-end;
+  animation: intro-up 0.75s cubic-bezier(0.7, 0, 0.2, 1) 0.95s forwards;
+}
+.intro-half--bottom {
+  bottom: 0;
+  align-items: flex-start;
+  animation: intro-down 0.75s cubic-bezier(0.7, 0, 0.2, 1) 0.95s forwards;
+}
+.intro-word {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(120px, 30vw, 460px);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  opacity: 0;
+  animation: intro-word 0.5s var(--ease) 0.1s forwards;
+}
+/* aynı kelime iki yarıya bölünür: ortadaki kılıç çizgisinde buluşurlar */
+.intro-half--top .intro-word {
+  transform: translateY(50%);
+}
+.intro-half--bottom .intro-word {
+  transform: translateY(-50%);
+}
+.intro-blade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(50% - 2px);
+  height: 4px;
+  background: #fff;
+  box-shadow:
+    0 0 10px var(--saber),
+    0 0 30px var(--saber),
+    0 0 80px rgba(255, 59, 47, 0.8);
+  transform: scaleX(0);
+  animation:
+    intro-blade 0.55s cubic-bezier(0.7, 0, 0.2, 1) 0.35s forwards,
+    intro-fade 0.4s ease 1.05s forwards;
+}
+@keyframes intro-word {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes intro-blade {
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes intro-fade {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes intro-up {
+  to {
+    transform: translateY(-101%);
+  }
+}
+@keyframes intro-down {
+  to {
+    transform: translateY(101%);
+  }
+}
+@keyframes intro-out {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* --- kılıç ilerleme çubuğu ----------------------------------------------------------------- */
+.saber-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  z-index: 40;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+.saber-progress-hilt {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 6px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(90deg, #6e6a62, #c9c7c2 40%, #2a2a2e 60%, #c9c7c2);
+}
+.saber-progress-blade {
+  flex: 1;
+  height: 3px;
+  border-radius: 0 3px 3px 0;
+  background: #fff;
+  box-shadow:
+    0 0 6px var(--saber),
+    0 0 16px var(--saber);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
 /* --- imleç parıltısı ---------------------------------------------------------------------- */
 .cursor-glow {
   position: fixed;
@@ -974,6 +1148,7 @@
 @media (prefers-reduced-motion: reduce) {
   .rise,
   .ticker-track,
+  .js-reveal .sec-head.is-in::after,
   .hero-hint svg,
   .badge--live::before {
     animation: none;

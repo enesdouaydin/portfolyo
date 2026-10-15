@@ -15,6 +15,12 @@ function moveSpotlight(e: PointerEvent<HTMLUListElement>) {
   const r = card.getBoundingClientRect();
   card.style.setProperty('--mx', `${e.clientX - r.left}px`);
   card.style.setProperty('--my', `${e.clientY - r.top}px`);
+  // fareye doğru hafif 3D eğim (büyük kartta daha az)
+  const max = card.closest('.featured') ? 2 : 6;
+  const nx = (e.clientX - r.left) / r.width - 0.5;
+  const ny = (e.clientY - r.top) / r.height - 0.5;
+  card.style.setProperty('--ry', `${(nx * max).toFixed(2)}deg`);
+  card.style.setProperty('--rx', `${(-ny * max).toFixed(2)}deg`);
 }
 
 /** Seçili işler: kategori filtresi, öne çıkan Bayi Rota kartı ve proje ızgarası. */

@@ -12,6 +12,8 @@ import { ExperienceSection } from './ExperienceSection';
 import { CapabilitiesSection } from './CapabilitiesSection';
 import { ContactSection } from './ContactSection';
 import { CursorGlow } from './CursorGlow';
+import { Intro } from './Intro';
+import { SaberProgress } from './SaberProgress';
 
 const HERO_LABEL =
   'Enes’in 3D figürü kırmızı bir ışın kılıcını iki eli arasında çeviriyor; sayfa kaydırıldıkça dönüyor ve kılıcın iki yanında teknolojiler beliriyor';
@@ -25,6 +27,8 @@ export default function Home() {
   useReveal();
   return (
     <div className="home on">
+      <Intro />
+      <SaberProgress />
       <CursorGlow />
       <SiteHeader home>
         <a className="nl" href="#isler">
