@@ -146,10 +146,10 @@ export function createDocScene(ctx: SceneContext): SceneController {
       rr(x, 8, 8, 496, 144, 20);
       x.stroke();
       x.fillStyle = '#F2F0EA';
-      x.font = '600 52px Geist, Arial, sans-serif';
+      x.font = '600 52px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText(title, 36, 76);
       x.fillStyle = '#A3A3A3';
-      x.font = '400 28px "Geist Mono", monospace';
+      x.font = '400 28px "Geist Mono Variable", "Geist Mono", monospace';
       x.fillText(sub, 36, 124);
       t.needsUpdate = true;
     };
@@ -184,7 +184,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
     x.fillStyle = '#F7F5EF';
     x.fillRect(0, 0, 500, 680);
     x.fillStyle = '#0A0A0A';
-    x.font = '700 30px Geist, Arial, sans-serif';
+    x.font = '700 30px "Geist Variable", Geist, Arial, sans-serif';
     x.fillText('PROJE BAŞVURU FORMU', 30, 50);
     x.fillStyle = '#E3E0D8';
     x.fillRect(30, 62, 440, 2);
@@ -192,7 +192,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
     HEADS.forEach((h, i) => {
       const y = 70 + i * 98;
       x.fillStyle = '#0A0A0A';
-      x.font = '600 22px Geist, Arial, sans-serif';
+      x.font = '600 22px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText(`${i + 1}. ${h}`, 30, y + 28);
       for (let k = 0; k < 3; k++) {
         const w = k === 2 ? 110 + rnd() * 120 : 330 + rnd() * 110;
@@ -201,7 +201,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
       }
     });
     x.fillStyle = '#9A978F';
-    x.font = '400 16px "Geist Mono", monospace';
+    x.font = '400 16px "Geist Mono Variable", "Geist Mono", monospace';
     x.fillText('örnek belge', 30, 660);
     sheetTex.t.needsUpdate = true;
   }
@@ -259,10 +259,10 @@ export function createDocScene(ctx: SceneContext): SceneController {
       rr(x, 4, 4, 292, 72, 14);
       x.stroke();
       x.fillStyle = '#FFD60A';
-      x.font = '400 20px "Geist Mono", monospace';
+      x.font = '400 20px "Geist Mono Variable", "Geist Mono", monospace';
       x.fillText(String(i + 1).padStart(2, '0'), 20, 46);
       x.fillStyle = '#F2F0EA';
-      x.font = '600 28px Geist, Arial, sans-serif';
+      x.font = '600 28px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText(h, 62, 49);
       t.needsUpdate = true;
     };
@@ -403,10 +403,10 @@ export function createDocScene(ctx: SceneContext): SceneController {
     x.fillStyle = '#F7F5EF';
     x.fillRect(0, 0, 600, 840);
     x.fillStyle = '#0A0A0A';
-    x.font = '700 28px Geist, Arial, sans-serif';
+    x.font = '700 28px "Geist Variable", Geist, Arial, sans-serif';
     x.fillText('PROJE BAŞVURU FORMU', 36, 52);
     x.fillStyle = '#6A6862';
-    x.font = '400 18px "Geist Mono", monospace';
+    x.font = '400 18px "Geist Mono Variable", "Geist Mono", monospace';
     x.textAlign = 'right';
     x.fillText(`Sayfa ${s.page} / 150`, 564, 50);
     x.textAlign = 'left';
@@ -420,7 +420,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
     x.stroke();
     x.setLineDash([]);
     x.fillStyle = '#8A877F';
-    x.font = '400 14px "Geist Mono", monospace';
+    x.font = '400 14px "Geist Mono Variable", "Geist Mono", monospace';
     x.fillText('PROJE BİLGİSİ', 54, 110);
     x.fillStyle = '#2A2A2A';
     x.fillRect(54, 124, 470 * clamp01(s.info * 2), 9);
@@ -432,11 +432,11 @@ export function createDocScene(ctx: SceneContext): SceneController {
       const act = s.active === i;
       const edited = s.edit > 0 && i === 2;
       x.fillStyle = '#0A0A0A';
-      x.font = '600 21px Geist, Arial, sans-serif';
+      x.font = '600 21px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText(`S${i + 1}. ${q}`, 36, y + 20);
       if (f > 0) {
         x.fillStyle = '#8A877F';
-        x.font = '400 14px "Geist Mono", monospace';
+        x.font = '400 14px "Geist Mono Variable", "Geist Mono", monospace';
         x.textAlign = 'right';
         x.fillText(`↳ ${HEADS[i]}`, 564, y + 20);
         x.textAlign = 'left';
@@ -482,7 +482,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
       }
     });
     x.fillStyle = '#9A978F';
-    x.font = '400 14px "Geist Mono", monospace';
+    x.font = '400 14px "Geist Mono Variable", "Geist Mono", monospace';
     x.fillText('örnek form', 36, 822);
     formTex.t.needsUpdate = true;
   }
@@ -501,13 +501,13 @@ export function createDocScene(ctx: SceneContext): SceneController {
     rr(x, 4, 4, 632, 192, 22);
     x.stroke();
     x.fillStyle = '#8A8A8A';
-    x.font = '400 20px "Geist Mono", monospace';
+    x.font = '400 20px "Geist Mono Variable", "Geist Mono", monospace';
     x.fillText('DÜZELTME AJANI', 32, 46);
     x.fillStyle = '#F7F5EF';
     rr(x, 28, 66, 500, 64, 14);
     x.fill();
     x.fillStyle = '#0A0A0A';
-    x.font = '400 25px Geist, Arial, sans-serif';
+    x.font = '400 25px "Geist Variable", Geist, Arial, sans-serif';
     x.fillText(AGENT_TEXT.slice(0, typed) + (typed < AGENT_TEXT.length ? '|' : ''), 46, 108);
     x.fillStyle = '#FFD60A';
     x.beginPath();
@@ -523,7 +523,7 @@ export function createDocScene(ctx: SceneContext): SceneController {
     x.lineTo(584, 110);
     x.stroke();
     x.fillStyle = done ? '#FFD60A' : '#6A6A6A';
-    x.font = '400 21px "Geist Mono", monospace';
+    x.font = '400 21px "Geist Mono Variable", "Geist Mono", monospace';
     x.fillText(done ? 'S3 güncellendi ✓' : 'soru bazında uygulanır…', 32, 168);
     agentTex.t.needsUpdate = true;
   }

@@ -113,3 +113,14 @@ export const PROJECTS: readonly ProjectRow[] = [
     to: ROUTES.evFiyat,
   },
 ];
+
+/** "Kısaca" bölümündeki sayılar. */
+export const METRICS: ReadonlyArray<{ value: string; unit?: string; prefix?: string; label: string }> = [
+  { value: '10', unit: 'sn', label: 'Bir haftalık rota planlaması artık saniyeler sürüyor.' },
+  { prefix: '%', value: '50', label: 'Daha kısa saha rotaları: doğrudan yakıt ve zaman.' },
+  { value: '~2', unit: 'sn', label: 'STT → agent → TTS: sesli asistanın yanıt süresi.' },
+  { value: '150', unit: 'sayfa', label: 'Proje formu, VLM ve RAG ile kendiliğinden doluyor.' },
+];
+
+/** Hero'nun altındaki kayan şerit: kılıç çiftlerindeki teknolojilerin hepsi. */
+export const TICKER: readonly string[] = PAIRS.flatMap(([a, b]) => [a, b]);

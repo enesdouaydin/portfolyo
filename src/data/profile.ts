@@ -32,6 +32,8 @@ export interface CapabilityCard {
 }
 export interface CapabilityGroup {
   label: string;
+  /** Ana sayfadaki grup başlığı. */
+  title: string;
   count: string;
   /** Kart başlığı punto (px): 1. grup 22, 2. grup 20. */
   titleSize: number;
@@ -41,6 +43,7 @@ export interface CapabilityGroup {
 export const CAPABILITY_GROUPS: readonly CapabilityGroup[] = [
   {
     label: '01 / YAPAY ZEKÂ & MAKİNE ÖĞRENMESİ',
+    title: 'Yapay zekâ & makine öğrenmesi',
     count: '7 alan',
     titleSize: 22,
     cards: [
@@ -104,6 +107,7 @@ export const CAPABILITY_GROUPS: readonly CapabilityGroup[] = [
   },
   {
     label: '02 / YAZILIM GELİŞTİRME',
+    title: 'Yazılım geliştirme',
     count: '7 alan',
     titleSize: 20,
     cards: [

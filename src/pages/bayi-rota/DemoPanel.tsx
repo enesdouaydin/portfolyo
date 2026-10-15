@@ -48,7 +48,13 @@ function MapBackdrop() {
         <path d="M0 14 L 160 18" strokeWidth=".45" />
         <path d="M0 66 L 160 64" strokeWidth=".45" />
       </g>
-      <g fontFamily="Geist, sans-serif" fontSize="3.2" fill="#3C3C3C" fontWeight="600" letterSpacing=".2">
+      <g
+        fontFamily="Geist Variable, Geist, sans-serif"
+        fontSize="3.2"
+        fill="#3C3C3C"
+        fontWeight="600"
+        letterSpacing=".2"
+      >
         <text x="18" y="12">
           KEÇİÖREN
         </text>
@@ -233,7 +239,7 @@ export function DemoPanel({ day, sel, onPickDay, onPickPin }: Props) {
                   border: `1px solid ${on ? '#FFD60A' : '#2E2E2E'}`,
                   background: on ? '#FFD60A' : 'transparent',
                   color: on ? '#0A0A0A' : '#D4D4D4',
-                  fontFamily: "'Geist',sans-serif",
+                  fontFamily: "'Geist Variable','Geist',sans-serif",
                   fontWeight: '600',
                   fontSize: '13px',
                   cursor: 'pointer',
@@ -272,7 +278,7 @@ export function DemoPanel({ day, sel, onPickDay, onPickPin }: Props) {
                     border: `1px solid ${on ? DAY_COLORS[i] : '#232323'}`,
                     background: on ? '#1C1C1C' : 'transparent',
                     color: '#F2F0EA',
-                    fontFamily: "'Geist',sans-serif",
+                    fontFamily: "'Geist Variable','Geist',sans-serif",
                     fontSize: '14px',
                     fontWeight: '500',
                     cursor: 'pointer',

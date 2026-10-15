@@ -168,17 +168,17 @@ export function createHousesScene(ctx: SceneContext): SceneController {
       x.stroke();
       x.textBaseline = 'alphabetic';
       x.fillStyle = '#8A877F';
-      x.font = '500 30px "Geist Mono", monospace';
+      x.font = '500 30px "Geist Mono Variable", "Geist Mono", monospace';
       x.fillText('İLAN', 44, 72);
       x.fillText('MODEL TAHMİNİ', 404, 72);
       x.fillStyle = '#EDEBE6';
-      x.font = '500 52px Geist, Arial, sans-serif';
+      x.font = '500 52px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText(opts.ask, 44, 146);
       x.fillText(opts.est, 404, 146);
       x.fillStyle = '#2A2A2E';
       x.fillRect(380, 40, 2, 130);
       x.fillStyle = opts.good ? '#FFD60A' : opts.over ? '#C9C6BE' : '#A8A59D';
-      x.font = '600 40px Geist, Arial, sans-serif';
+      x.font = '600 40px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText(opts.verdict, 44, 238);
       tex.needsUpdate = true;
     }

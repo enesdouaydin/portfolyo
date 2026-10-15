@@ -162,16 +162,16 @@ export function createInvoiceScene(ctx: SceneContext): SceneController {
     x.fillStyle = '#F7F5EF';
     x.fillRect(0, 0, 600, 800);
     x.fillStyle = '#0A0A0A';
-    x.font = '700 46px Geist, Arial, sans-serif';
+    x.font = '700 46px "Geist Variable", Geist, Arial, sans-serif';
     x.fillText('FATURA', 40, 80);
-    x.font = '400 22px "Geist Mono", monospace';
+    x.font = '400 22px "Geist Mono Variable", "Geist Mono", monospace';
     x.fillStyle = '#55534E';
     x.fillText('No: ÖRN-2026-0412', 360, 60);
     x.fillText('Tarih: 12.10.2026', 360, 92);
     x.fillStyle = '#0A0A0A';
-    x.font = '600 24px Geist, Arial, sans-serif';
+    x.font = '600 24px "Geist Variable", Geist, Arial, sans-serif';
     x.fillText('Satıcı: Örnek Tedarik Ltd.', 40, 160);
-    x.font = '400 22px Geist, Arial, sans-serif';
+    x.font = '400 22px "Geist Variable", Geist, Arial, sans-serif';
     x.fillStyle = '#55534E';
     x.fillText('Alıcı: Firmanız', 40, 196);
     x.fillStyle = '#E3E0D8';
@@ -183,7 +183,7 @@ export function createInvoiceScene(ctx: SceneContext): SceneController {
       ['Depolama', '₺2.000,00'],
     ];
     rows.forEach((r, i) => {
-      x.font = (i ? '400 ' : '600 ') + '22px Geist, Arial, sans-serif';
+      x.font = (i ? '400 ' : '600 ') + '22px "Geist Variable", Geist, Arial, sans-serif';
       x.fillStyle = i ? '#2A2A2A' : '#0A0A0A';
       x.fillText(r[0], 40, 290 + i * 48);
       x.fillText(r[1], 430, 290 + i * 48);
@@ -191,17 +191,17 @@ export function createInvoiceScene(ctx: SceneContext): SceneController {
     x.fillStyle = '#E3E0D8';
     x.fillRect(40, 470, 520, 2);
     x.fillStyle = '#2A2A2A';
-    x.font = '400 24px Geist, Arial, sans-serif';
+    x.font = '400 24px "Geist Variable", Geist, Arial, sans-serif';
     x.fillText('Matrah', 40, 530);
     x.fillText('₺12.500,00', 410, 530);
     x.fillText('KDV %20', 40, 580);
     x.fillText('₺2.500,00', 420, 580);
     x.fillStyle = '#0A0A0A';
-    x.font = '700 30px Geist, Arial, sans-serif';
+    x.font = '700 30px "Geist Variable", Geist, Arial, sans-serif';
     x.fillText('TOPLAM', 40, 650);
     x.fillText('₺15.000,00', 380, 650);
     x.fillStyle = '#9A978F';
-    x.font = '400 18px "Geist Mono", monospace';
+    x.font = '400 18px "Geist Mono Variable", "Geist Mono", monospace';
     x.fillText('örnek fatura', 40, 760);
     itex.needsUpdate = true;
   })();
@@ -295,10 +295,10 @@ export function createInvoiceScene(ctx: SceneContext): SceneController {
     rr(x, 8, 8, 496, 144, 20);
     x.stroke();
     x.fillStyle = '#F2F0EA';
-    x.font = '600 52px Geist, Arial, sans-serif';
+    x.font = '600 52px "Geist Variable", Geist, Arial, sans-serif';
     x.fillText(text, 36, 76);
     x.fillStyle = '#A3A3A3';
-    x.font = '400 28px "Geist Mono", monospace';
+    x.font = '400 28px "Geist Mono Variable", "Geist Mono", monospace';
     x.fillText(sub, 36, 124);
     const t = new T.CanvasTexture(c);
     t.encoding = T.sRGBEncoding;
@@ -375,10 +375,10 @@ export function createInvoiceScene(ctx: SceneContext): SceneController {
     x.fillStyle = '#0F0F10';
     x.fillRect(0, 0, W, H);
     x.fillStyle = '#F2F0EA';
-    x.font = '600 34px Geist, Arial, sans-serif';
+    x.font = '600 34px "Geist Variable", Geist, Arial, sans-serif';
     x.fillText('KDV İade', 32, 80);
     x.fillStyle = '#8A8A8A';
-    x.font = '400 20px "Geist Mono", monospace';
+    x.font = '400 20px "Geist Mono Variable", "Geist Mono", monospace';
     x.fillText('Ekim 2026 dönemi', 32, 116);
     const steps = ['Okut', 'Alanlar', 'Tür', 'Hesap', 'Dosya'];
     steps.forEach((_s, i) => {
@@ -387,10 +387,10 @@ export function createInvoiceScene(ctx: SceneContext): SceneController {
     });
     function row(lbl: string, val: string, y: number, hi: boolean) {
       x.fillStyle = '#8A8A8A';
-      x.font = '400 21px "Geist Mono", monospace';
+      x.font = '400 21px "Geist Mono Variable", "Geist Mono", monospace';
       x.fillText(lbl, 32, y);
       x.fillStyle = hi ? '#FFD60A' : '#F2F0EA';
-      x.font = '600 30px Geist, Arial, sans-serif';
+      x.font = '600 30px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText(val, 32, y + 38);
     }
     if (st <= 1) {
@@ -415,10 +415,10 @@ export function createInvoiceScene(ctx: SceneContext): SceneController {
       x.fillStyle = '#2A2A2A';
       for (let i = 0; i < 8; i++) x.fillRect(110, 280 + i * 38, i % 3 === 0 ? 200 : 150, 12);
       x.fillStyle = '#F2F0EA';
-      x.font = '600 28px Geist, Arial, sans-serif';
+      x.font = '600 28px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText(st === 0 ? 'Faturayı çerçeveye al' : 'Okunuyor…', 32, 720);
       x.fillStyle = '#8A8A8A';
-      x.font = '400 20px "Geist Mono", monospace';
+      x.font = '400 20px "Geist Mono Variable", "Geist Mono", monospace';
       x.fillText(st === 0 ? 'PDF ya da fotoğraf' : 'OCR · metin çıkarılıyor', 32, 760);
     } else if (st === 2) {
       row('SATICI', 'Örnek Tedarik Ltd.', 210, false);
@@ -427,29 +427,29 @@ export function createInvoiceScene(ctx: SceneContext): SceneController {
       row('KDV %20', '₺2.500,00', 510, true);
       row('TOPLAM', '₺15.000,00', 610, false);
       x.fillStyle = '#8A8A8A';
-      x.font = '400 20px "Geist Mono", monospace';
+      x.font = '400 20px "Geist Mono Variable", "Geist Mono", monospace';
       x.fillText('5 alan okundu ✓', 32, 760);
     } else if (st === 3) {
       x.fillStyle = '#8A8A8A';
-      x.font = '400 21px "Geist Mono", monospace';
+      x.font = '400 21px "Geist Mono Variable", "Geist Mono", monospace';
       x.fillText('FATURA TÜRÜ', 32, 220);
       x.fillStyle = '#FFD60A';
       rr(x, 32, 244, 386, 120, 18);
       x.fill();
       x.fillStyle = '#0A0A0A';
-      x.font = '700 40px Geist, Arial, sans-serif';
+      x.font = '700 40px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText('Gelen fatura', 56, 300);
-      x.font = '400 22px "Geist Mono", monospace';
+      x.font = '400 22px "Geist Mono Variable", "Geist Mono", monospace';
       x.fillText('kestirilen · alış', 56, 340);
       x.strokeStyle = '#2E2E2E';
       x.lineWidth = 3;
       rr(x, 32, 384, 386, 100, 18);
       x.stroke();
       x.fillStyle = '#6A6A6A';
-      x.font = '600 34px Geist, Arial, sans-serif';
+      x.font = '600 34px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText('Giden fatura', 56, 444);
       x.fillStyle = '#F2F0EA';
-      x.font = '400 24px Geist, Arial, sans-serif';
+      x.font = '400 24px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText('₺2.500,00 KDV', 32, 560);
       x.fillStyle = '#A3A3A3';
       x.fillText('indirilecek KDV’ye eklendi', 32, 596);
@@ -459,26 +459,26 @@ export function createInvoiceScene(ctx: SceneContext): SceneController {
       x.fillStyle = '#2E2E2E';
       x.fillRect(32, 410, 386, 2);
       x.fillStyle = '#8A8A8A';
-      x.font = '400 21px "Geist Mono", monospace';
+      x.font = '400 21px "Geist Mono Variable", "Geist Mono", monospace';
       x.fillText('İADE EDİLECEK KDV', 32, 460);
       x.fillStyle = '#FFD60A';
-      x.font = '700 58px Geist, Arial, sans-serif';
+      x.font = '700 58px "Geist Variable", Geist, Arial, sans-serif';
       x.fillText('₺16.450,00', 32, 530);
       if (st >= 5) {
         x.fillStyle = '#FFD60A';
         rr(x, 32, 640, 386, 86, 18);
         x.fill();
         x.fillStyle = '#0A0A0A';
-        x.font = '600 30px Geist, Arial, sans-serif';
+        x.font = '600 30px "Geist Variable", Geist, Arial, sans-serif';
         x.fillText('İade dosyası hazır ✓', 60, 694);
       } else {
         x.fillStyle = '#8A8A8A';
-        x.font = '400 20px "Geist Mono", monospace';
+        x.font = '400 20px "Geist Mono Variable", "Geist Mono", monospace';
         x.fillText('dönem faturaları toplanıyor…', 32, 700);
       }
     }
     x.fillStyle = '#5A5A5A';
-    x.font = '400 17px "Geist Mono", monospace';
+    x.font = '400 17px "Geist Mono Variable", "Geist Mono", monospace';
     x.fillText('örnek veri', 32, 860);
     stex.needsUpdate = true;
   }

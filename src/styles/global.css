@@ -1,23 +1,197 @@
-/* Tüm sayfalarda ortak: tasarımdaki her <helmet><style> bloğunun başındaki kurallar. */
+/*
+ * Ortak tasarım dili. Renkler ve yazı tipleri burada değişken olarak tanımlı;
+ * bileşenler bunları kullanır. Zemin rengi 3D sahnelerin temizleme rengiyle aynıdır (#0A0A0A).
+ */
+:root {
+  /* renk */
+  --bg: #0a0a0a;
+  --surface: #121110;
+  --surface-2: #191816;
+  --line: #262420;
+  --line-strong: #3a3732;
+  --text: #f1ede4;
+  --muted: #a39e93;
+  --faint: #6e6a62;
+  --accent: #ffd60a; /* marka sarısı: butonlar, vurgular, 3D etiketler */
+  --accent-ink: #0a0a0a; /* sarının üstündeki yazı */
+  --saber: #ff3b2f; /* kılıcın kırmızısı: yalnızca "canlı" işaretleri */
+
+  /* yazı */
+  --font-display: 'Bricolage Grotesque Variable', 'Arial Narrow', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Geist Variable', 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, monospace;
+
+  /* ölçü */
+  --wrap: 1360px;
+  --radius: 22px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
 body {
   margin: 0;
-  background: #0a0a0a;
+  background: var(--bg);
 }
 a {
-  color: #edebe6;
+  color: var(--text);
 }
 a:hover {
   color: #ffffff;
 }
 ::selection {
-  background: #ffd60a;
-  color: #0a0a0a;
+  background: var(--accent);
+  color: var(--accent-ink);
 }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* --- üst menü ------------------------------------------------------------------------------ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid var(--line);
+}
+.site-nav {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-stretch: 85%;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+.site-logo-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 16px;
+  font-weight: 800;
+  font-stretch: 75%;
+  transition: transform 0.4s var(--ease);
+}
+.site-logo:hover .site-logo-mark {
+  transform: rotate(-8deg) scale(1.06);
+}
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+
+/* menü bağlantısı (proje sayfaları da kullanır) */
 .nl {
-  color: #a8a59d;
+  color: var(--muted);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 .nl:hover {
-  color: #ffd60a;
+  color: var(--accent);
+}
+
+/* sarı hap buton */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: rgba(10, 10, 10, 0.4);
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.35s var(--ease);
+}
+.pill:hover {
+  border-color: var(--text);
+  color: #fff;
+}
+.pill--accent {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+.pill--accent:hover {
+  background: #fff;
+  border-color: #fff;
+  color: var(--accent-ink);
+  transform: translateY(-1px);
+}
+.pill--sm {
+  min-height: 40px;
+  padding: 0 18px;
+  font-size: 14px;
+}
+.pill svg {
+  transition: transform 0.35s var(--ease);
+}
+.pill:hover svg {
+  transform: translateY(2px);
+}
+
+/* alt bilgi satırı */
+.site-footer {
+  border-top: 1px solid var(--line);
+}
+.site-footer-inner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 28px var(--gutter);
+}
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--faint);
+}
+.footer-row nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.footer-row a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.footer-row a:hover {
+  color: var(--accent);
 }

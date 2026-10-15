@@ -16,7 +16,7 @@ export function ResultSection() {
         <div style={{ flex: '1 1 340px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <span
             style={{
-              fontFamily: "'Geist Mono',ui-monospace,monospace",
+              fontFamily: "'Geist Mono Variable','Geist Mono',ui-monospace,monospace",
               fontSize: '12px',
               color: '#8A877F',
               letterSpacing: '.06em',
@@ -44,7 +44,7 @@ export function ResultSection() {
         <div style={{ flex: '1 1 340px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <span
             style={{
-              fontFamily: "'Geist Mono',ui-monospace,monospace",
+              fontFamily: "'Geist Mono Variable','Geist Mono',ui-monospace,monospace",
               fontSize: '12px',
               color: '#FFD60A',
               letterSpacing: '.06em',
