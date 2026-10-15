@@ -1,3 +1,4 @@
+import { ErrorBoundary } from '../../components/ErrorBoundary';
 import { ContactPill, SiteHeader } from '../../components/SiteHeader';
 import { HeroStage } from '../../components/HeroStage';
 import { usePageTitle } from '../../hooks/usePageTitle';
@@ -44,7 +45,11 @@ export default function Home() {
           scrollHeight="3500px"
           label={HERO_LABEL}
         >
-          {({ stage, noScroll }) => <HeroOverlay stage={stage} noScroll={noScroll} />}
+          {({ stage, noScroll }) => (
+            <ErrorBoundary fallback={null}>
+              <HeroOverlay stage={stage} noScroll={noScroll} />
+            </ErrorBoundary>
+          )}
         </HeroStage>
         <Ticker />
         <AboutSection />

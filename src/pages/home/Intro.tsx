@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { dbg } from '../../debug';
 
 const KEY = 'intro-seen';
 
@@ -24,7 +25,11 @@ export function Intro() {
     } catch {
       /* depolama kapalı: her açılışta gösterilir */
     }
-    const done = () => setShow(false);
+    dbg('açılış perdesi gösteriliyor');
+    const done = () => {
+      dbg('açılış perdesi bitti');
+      setShow(false);
+    };
     const timer = window.setTimeout(done, 1700);
     window.addEventListener('keydown', done, { once: true });
     return () => {

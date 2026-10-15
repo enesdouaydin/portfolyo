@@ -1,5 +1,6 @@
 import * as T from 'three';
 import { GLTFLoader, type GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { dbg } from '../debug';
 import { PAIRS } from '../data/home';
 import { ACCENT } from '../theme';
 import { Choreography, MODEL_SCALE } from './hero/choreography';
@@ -137,6 +138,7 @@ export function createHeroScene({ scene, camera: cam, canvas: cv }: SceneContext
     });
     rig = findRig(gltf.scene);
     body.add(gltf.scene);
+    dbg('3D: model çözüldü, sahneye eklendi');
   };
   const onModelError = (err: unknown) => console.warn('hero model failed to load', err);
   // Önce indir (sıkıştırılmış kopya varsa onu aç, ilerlemeyi duyur), sonra çöz
@@ -283,7 +285,7 @@ export function createHeroScene({ scene, camera: cam, canvas: cv }: SceneContext
       dGeo.attributes.position.needsUpdate = true;
 
       const n = PAIRS.length;
-      setPair(Math.min(n - 1, Math.floor(ps * n * 0.999)));
+      setPair(Math.min(n - 1, Math.max(0, Math.floor(ps * n * 0.999) || 0)));
 
       cam.position.x += ((narrow ? 0 : 0.6) + mx * 0.2 - cam.position.x) * 0.05;
       cam.position.y += ((narrow ? 1.2 : 1.22) - my * 0.1 - cam.position.y) * 0.05;

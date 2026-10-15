@@ -4,6 +4,8 @@
  * Tarayıcı `DecompressionStream`'i bilmiyorsa ya da .gz yoksa (geliştirme sunucusu) düz .glb indirilir.
  * İndirme ilerlemesi `HERO_MODEL_EVENT` ile duyurulur; ana sayfa hero'su "yükleniyor %NN" yazısını buradan alır.
  */
+import { dbg } from '../../debug';
+
 export const HERO_MODEL_EVENT = 'hero-model';
 
 export interface HeroModelProgress {
@@ -61,8 +63,17 @@ async function fetchPlain(url: string): Promise<ArrayBuffer> {
 /** Modeli indirip GLB baytlarını döndürür; `GLTFLoader.parse` ile çözülür. */
 export async function loadModel(url: string): Promise<ArrayBuffer> {
   announce({ pct: 0, done: false });
+  const t0 = performance.now();
+  dbg('model: indirme başladı');
   try {
-    return (await fetchGzipped(url)) ?? (await fetchPlain(url));
+    const gz = await fetchGzipped(url);
+    if (!gz) dbg('model: gzip kopyası yok/açılamadı → düz .glb indiriliyor');
+    const buf = gz ?? (await fetchPlain(url));
+    dbg(`model: indi ve açıldı (${(buf.byteLength / 1048576).toFixed(1)} MB, ${Math.round(performance.now() - t0)} ms)`);
+    return buf;
+  } catch (e) {
+    dbg(`model: İNDİRİLEMEDİ ${String(e)}`);
+    throw e;
   } finally {
     announce({ pct: 100, done: true });
   }

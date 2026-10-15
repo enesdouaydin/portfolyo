@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { dbg } from '../debug';
 import type { SceneController, SceneFactory, StageOptions } from './types';
 
 interface StartArgs {
@@ -19,7 +20,10 @@ const defaultSmooth = (dt: number) => 1 - Math.exp(-dt * 4.5);
  */
 export function startScrollScene({ canvas, section, factory, options, onStage, onNoScroll }: StartArgs) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  // Telefonlarda (dokunmatik) çizim yükü için en çok 1.5 kat: ×3 ekranda piksel sayısı ~%44 azalır
+  const coarse = !!window.matchMedia?.('(pointer: coarse)').matches;
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 2));
+  dbg(`3D: renderer kuruldu (piksel oranı ${renderer.getPixelRatio()})`);
   renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -64,6 +68,7 @@ export function startScrollScene({ canvas, section, factory, options, onStage, o
   let ps = 0;
   let stage = 0;
   let noScroll = false;
+  let firstFrame = false;
   // idleAutoplay: ilerleme `pv` kaydırma farklarını biriktirir, kaydırma durunca kendi kendine ilerler.
   const IDLE_S = 1.2;
   const END_HOLD_S = 0.8;
@@ -79,7 +84,8 @@ export function startScrollScene({ canvas, section, factory, options, onStage, o
   const frame = (now: number) => {
     raf = requestAnimationFrame(frame);
     const t = (now - t0) / 1000;
-    const dt = Math.min(0.05, (now - last) / 1000);
+    // İlk karede rAF zaman damgası `t0`'dan önce olabilir: dt negatif çıkmasın (ilerleme eksiye düşüp sahneyi çökertiyordu)
+    const dt = Math.max(0, Math.min(0.05, (now - last) / 1000));
     last = now;
     const rect = section.getBoundingClientRect();
     const vh = window.innerHeight || 900;
@@ -127,6 +133,7 @@ export function startScrollScene({ canvas, section, factory, options, onStage, o
         p = pv;
       }
     }
+    p = Math.min(1, Math.max(0, Number.isFinite(p) ? p : 0)); // sahneye her zaman 0–1 arası, geçerli bir değer
     ps += (p - ps) * (reduce ? 1 : smooth(dt));
     k = 1 - Math.exp(-dt * 3.5);
     const next = controller.update(ps, t, dt, narrow);
@@ -135,6 +142,10 @@ export function startScrollScene({ canvas, section, factory, options, onStage, o
       onStage(next);
     }
     renderer.render(scene, camera);
+    if (!firstFrame) {
+      firstFrame = true;
+      dbg('3D: ilk kare çizildi');
+    }
   };
   raf = requestAnimationFrame(frame);
 

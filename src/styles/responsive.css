@@ -75,3 +75,14 @@
     padding-top: 0 !important;
   }
 }
+
+/* Dokunmatik ve dar ekranlar: ağır, süs amaçlı katmanlar kapalı.
+   - Film greni: ekranın 4 katı büyüklükte sabit katman + SVG gürültü + sürekli animasyon; yüksek yoğunluklu telefonlarda
+     onlarca MB'lık GPU katmanı olup 3D tuvalin üstüne biniyor (şüpheli siyah ekran nedeni).
+   - İmleç parıltısı: dokunmatikte hiç görünmez, ama karışım modu (mix-blend-mode) bazı GPU'larda sorun çıkarır. */
+@media (hover: none), (pointer: coarse), (max-width: 900px) {
+  body::after,
+  .cursor-glow {
+    display: none !important;
+  }
+}

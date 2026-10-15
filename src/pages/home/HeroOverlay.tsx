@@ -30,7 +30,7 @@ const ArrowDown = () => (
 
 /** 3D sahnenin üstündeki metin katmanı: başlık, düğmeler ve kılıçtaki teknoloji sayacı. */
 export function HeroOverlay({ stage, noScroll }: Props) {
-  const [left, right, group] = PAIRS[stage];
+  const [left, right, group] = PAIRS[stage] ?? PAIRS[0];
   // 3D model inerken (yavaş ağda birkaç sn sürebilir) ipucu yerine ilerleme gösterilir
   const [model, setModel] = useState<HeroModelProgress | null>(null);
   useEffect(() => {
